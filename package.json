@@ -6,7 +6,7 @@
   "scripts": {
     "build-dev": "webpack --mode=development",
     "build-prod": "webpack --mode=production",
-    "start": "webpack serve --hot --port 8080;",
+    "dev": "next dev -H 0.0.0.0",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "test": "jest --config jestconfig.json",
@@ -46,5 +46,13 @@
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/react-types": "^2.0.6",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@types/next": "^9.0.0",
+    "framer-motion": "^11.0.3"
   }
 }
