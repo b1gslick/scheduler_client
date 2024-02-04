@@ -5,9 +5,7 @@ const Page = () => {
   return (
     <Container>
       <Box display={{ md: 'flex' }}>
-        <Heading as='h2' variant='page=title'>
-          Scheduler App
-        </Heading>
+        <Heading as='h2' variant='page=title'></Heading>
       </Box>
     </Container>
   )
