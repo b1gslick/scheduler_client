@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "module": "esnext",
+    "target": "ES2019",
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "strict": false,
+    "noImplicitAny": false,
+    "noStrictGenericChecks": false,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
