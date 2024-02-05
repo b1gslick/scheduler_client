@@ -4,7 +4,7 @@
   "trailingComma": "none",
   "tabWidth": 2,
   "semi": false,
-  "printWidth": 120,
+  "printWidth": 80,
   "jsxSingleQuote": true,
   "endOfLine": "lf",
   "arrowParens": "avoid"
