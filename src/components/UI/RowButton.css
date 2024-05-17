@@ -1,0 +1,18 @@
+.row__Button {
+  margin: 1em;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  background: rgba(255, 255, 255, 0);
+  font-size: 1.5em;
+  padding: 0;
+  margin: 10px;
+}
+
+.row__Button:hover,
+.row__Button:focus {
+  transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
