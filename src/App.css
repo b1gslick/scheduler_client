@@ -17,7 +17,7 @@ body {
   width: 100%;
 }
 
-.row::after {
+.note::after {
   content: "";
   display: table;
   clear: both;

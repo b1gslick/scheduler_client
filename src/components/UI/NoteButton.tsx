@@ -1,18 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./RowButton.css";
+import "./NoteButton.css";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 type Props = {
   onClick: any;
   icon: IconProp;
+  id?: string;
 };
 
-const RowButton = (props: Props) => {
+const NoteButton = (props: Props) => {
   return (
-    <button className="row__Button" data-testid="row-button" {...props}>
+    <button className="note__Button" data-testid="note-button" {...props}>
       <FontAwesomeIcon icon={props.icon} />
     </button>
   );
 };
 
-export default RowButton;
+export default NoteButton;

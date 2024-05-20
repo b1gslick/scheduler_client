@@ -1,4 +1,4 @@
-.row__container {
+.note__container {
   display: flex;
   flex-direction: column;
 }
@@ -83,8 +83,8 @@ ul li {
   margin: 1em;
 }
 
-.row__addButton:hover,
-.row__addButton:focus {
+.note__addButton:hover,
+.note__addButton:focus {
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   transform: scale(1.25);
   position: relative;

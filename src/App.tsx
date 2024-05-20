@@ -1,14 +1,14 @@
 import "./App.css";
 import { useState } from "react";
-import RowLists from "./components/rows_list/RowsLists";
-import AddRowButton from "./components/UI/AddRowButton";
+import NotesLists from "./components/notes_list/NotesLists";
+import AddNoteButton from "./components/UI/AddNoteButton";
 import Modal from "./components/UI/Modal";
-import AddRow from "./components/rows/AddRow";
+import AddNote from "./components/notes/AddNote";
 import Layout from "./layout";
-import { RowProps } from "./components/rows/Row";
+import { NoteProps } from "./components/notes/Note";
 
 const App = () => {
-  let rowProps: RowProps[] = [
+  let note: NoteProps[] = [
     {
       id: 1,
       title: "Make good app",
@@ -16,28 +16,44 @@ const App = () => {
       time: 500,
     },
   ];
-  const [rows, setRows] = useState(rowProps);
-
+  const [notes, setRows] = useState(note);
   const [modal, setModal] = useState(false);
 
-  const createRow = (newPost: RowProps) => {
-    setRows([...rows, newPost]);
+  const createRow = (newPost: NoteProps) => {
+    setRows([...notes, newPost]);
   };
 
-  const removeRow = (row: RowProps) => {
-    setRows(rows.filter((r) => r.id !== row.id));
+  const removeRow = (note: NoteProps) => {
+    setRows(notes.filter((n) => n.id !== note.id));
   };
+
+  const editRow = (note: NoteProps) => {
+    // let newRow: RowProps[] = rows.map((r: RowProps) => {
+    // if (r.id === row.id) {
+    // return row;
+    // }
+    // return r;
+    // });
+    // setRows([...newRow]);
+  };
+
+  const playTimer = (note: NoteProps) => {};
 
   return (
     <Layout>
       <div className="container">
         <div className="column">
           <Modal visible={modal} setVisible={setModal}>
-            <AddRow create={createRow} />
+            <AddNote create={createRow} />
           </Modal>
-          <RowLists rows={rows} remove={removeRow}>
-            <AddRowButton onClick={() => setModal(true)} />
-          </RowLists>
+          <NotesLists
+            notes={notes}
+            remove={removeRow}
+            edit={editRow}
+            timer={playTimer}
+          >
+            <AddNoteButton onClick={() => setModal(true)} />
+          </NotesLists>
         </div>
       </div>
     </Layout>

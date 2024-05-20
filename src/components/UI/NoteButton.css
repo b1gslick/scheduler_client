@@ -1,4 +1,4 @@
-.row__Button {
+.note__Button {
   margin: 1em;
   border: none;
   cursor: pointer;
@@ -10,8 +10,8 @@
   margin: 10px;
 }
 
-.row__Button:hover,
-.row__Button:focus {
+.note__Button:hover,
+.note__Button:focus {
   transform: scale(1.25);
   position: relative;
   z-index: 5;

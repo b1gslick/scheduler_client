@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import "./AppButton.css";
 
 interface ButtonProps {

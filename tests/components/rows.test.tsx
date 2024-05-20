@@ -1,15 +1,15 @@
 import { render } from "@testing-library/react";
-import Row, { RowPros } from "../../src/components/rows/row";
+import Note, { NoteProps } from "../../src/components/notes/Note";
 import userEvent from "@testing-library/user-event";
 
 describe("Test rows", () => {
   it("simple render rows", async () => {
-    const { container } = renderRow();
+    const { container } = renderNote();
     expect(container).not.toBeNull();
   });
 
   it("description should be editable", async () => {
-    const { getByTestId } = renderRow();
+    const { getByTestId } = renderNote();
     const title = getByTestId("row-title");
     await userEvent.click(title);
     await userEvent.clear(title);
@@ -17,7 +17,7 @@ describe("Test rows", () => {
     expect(title.textContent).toBe("test2");
   });
   it("title should be editable", async () => {
-    const { getByTestId } = renderRow();
+    const { getByTestId } = renderNote();
     const description = getByTestId("row-desc");
     await userEvent.click(description);
     await userEvent.clear(description);
@@ -25,18 +25,18 @@ describe("Test rows", () => {
     expect(description.textContent).toBe("test2");
   });
   it("sticker has field for time", async () => {
-    const { getByTestId } = renderRow();
+    const { getByTestId } = renderNote();
     const timeBox = getByTestId("row-timebox");
     expect(timeBox).not.toBeNull();
   });
 });
 
-const renderRow = () => {
-  const rowProps: RowPros = {
+const renderNote = () => {
+  const note: NoteProps = {
     id: 0,
     title: "test",
     description: "testshorttext",
     time: 10,
   };
-  return render(<Row {...rowProps} />);
+  return render(<Note {...note} />);
 };

@@ -21,7 +21,6 @@ describe("common render", () => {
     });
   });
   it("App render with state for rows", () => {
-    const setRows = jest.fn();
-    const { getByTestId } = render(<App {setRows} />);
+    render(<App />);
   });
 });
