@@ -14,6 +14,7 @@ const App = () => {
       title: "Make good app",
       description: "For this activities",
       time: 500,
+      isFinish: false,
     },
   ];
   const [notes, setRows] = useState(note);
@@ -28,16 +29,14 @@ const App = () => {
   };
 
   const editRow = (note: NoteProps) => {
-    // let newRow: RowProps[] = rows.map((r: RowProps) => {
-    // if (r.id === row.id) {
-    // return row;
-    // }
-    // return r;
-    // });
-    // setRows([...newRow]);
+    let newNotes: NoteProps[] = notes.map((r: NoteProps) => {
+      if (r.id === note.id) {
+        return note;
+      }
+      return r;
+    });
+    setRows([...newNotes]);
   };
-
-  const playTimer = (note: NoteProps) => {};
 
   return (
     <Layout>
@@ -46,12 +45,7 @@ const App = () => {
           <Modal visible={modal} setVisible={setModal}>
             <AddNote create={createRow} />
           </Modal>
-          <NotesLists
-            notes={notes}
-            remove={removeRow}
-            edit={editRow}
-            timer={playTimer}
-          >
+          <NotesLists notes={notes} remove={removeRow} edit={editRow}>
             <AddNoteButton onClick={() => setModal(true)} />
           </NotesLists>
         </div>

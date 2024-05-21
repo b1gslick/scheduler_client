@@ -6,7 +6,6 @@ interface NotesListProps {
   remove: any;
   edit: any;
   children: ReactNode;
-  timer: any;
 }
 
 const NotesLists = (props: NotesListProps) => {
@@ -19,7 +18,6 @@ const NotesLists = (props: NotesListProps) => {
             {...note}
             key={note.id}
             edit={props.edit}
-            playTimer={props.timer}
           />
         </li>
       ))}

@@ -9,15 +9,15 @@ import {
 import Modal from "../UI/Modal";
 import EditNote from "./EditNote";
 import Timer from "../timer/Timer";
-import { convertMinsToHrsMins } from "../../Utils/helper";
+import { convertMinsToHrsMins } from "../../utils/helper";
 
 export type NoteProps = {
   id: number;
   title: string;
   description: string;
+  isFinish: boolean;
   time: number;
   remove?: any;
-  playTimer?: any;
   edit?: any;
 };
 
@@ -31,7 +31,7 @@ const Note = (props: NoteProps) => {
         <EditNote note={props} edit={props.edit}></EditNote>
       </Modal>
       <Modal visible={playModal} setVisible={setTimerModal}>
-        <Timer note={props} playTimer={props.playTimer}></Timer>
+        <Timer note={props}></Timer>
       </Modal>
       <a href="#" className="note__container">
         <h2

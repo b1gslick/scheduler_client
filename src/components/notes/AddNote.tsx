@@ -19,6 +19,7 @@ const AddNote = (props: AddNoteProps) => {
     e.preventDefault();
     const newNote = {
       ...note,
+      isFinish: false,
       id: Date.now(),
     };
     props.create(newNote);

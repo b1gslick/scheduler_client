@@ -9,39 +9,43 @@ type EditNoteProps = {
 };
 
 const EditNote = (props: EditNoteProps) => {
-  const [note, setEditNote] = useState(props.note);
+  const [title, setEditTitle] = useState(props.note.title);
+  const [description, setEditDescription] = useState(props.note.description);
+  const [time, setEditTime] = useState(props.note.time);
   const editNote = (e: any) => {
     e.preventDefault();
+    const note = {
+      ...props.note,
+      title: title,
+      description: description,
+      time: time,
+    };
+    props.edit(note);
   };
   return (
     <div className="note">
       <form>
         <input
-          value={props.note.title}
-          onChange={(e: any) => setEditNote({ ...note, title: e.target.value })}
+          value={title}
+          onChange={(e: any) => setEditTitle(e.target.value)}
           className="inputTitle"
           type="text"
-          placeholder="Title for activities"
         ></input>
         <textarea
-          value={props.note.description}
-          onChange={(e: any) =>
-            setEditNote({ ...note, description: e.target.value })
-          }
+          value={description}
+          onChange={(e: any) => setEditDescription(e.target.value)}
           className="inputDesc"
-          placeholder="Description about activities"
         ></textarea>
         <input
-          value={props.note.time}
-          onChange={(e: any) => setEditNote({ ...note, time: e.target.value })}
+          value={time}
+          onChange={(e: any) => setEditTime(e.target.value)}
           className="inputTime"
           type="number"
-          placeholder="Time in minutes"
           min={0}
           max={1440}
         ></input>
       </form>
-      <AppButton onClick={() => props.edit?.(props)}>Save</AppButton>
+      <AppButton onClick={editNote}>Save</AppButton>
     </div>
   );
 };

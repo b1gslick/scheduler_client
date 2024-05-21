@@ -2,33 +2,32 @@ import { NoteProps } from "../notes/Note";
 import { useEffect, useState } from "react";
 import "./Timer.css";
 import {
-  faEdit,
+  faCheckCircle,
+  faPauseCircle,
   faPlayCircle,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import NoteButton from "../UI/NoteButton";
-import AppButton from "../UI/AppButton";
 
 type timerProps = {
-  playTimer: any;
   note: NoteProps;
 };
 
 const Timer = (props: timerProps) => {
   const [time, setTime] = useState(props.note.time * 60);
+  const [isPlay, setPlay] = useState(false);
+  const [isFinish, setFinish] = useState(props.note.isFinish);
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      setTime((time) => {
-        if (time === 0) {
-          clearInterval(timer);
-          return 0;
-        } else return time - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
+    let timer: any = null;
+    if (isPlay) {
+      timer = setInterval(() => {
+        setTime((time: number) => time - 1);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(timer);
+    };
+  });
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor((time % 3600) / 60);
   const seconds = Math.floor(time % 60);
@@ -54,20 +53,28 @@ const Timer = (props: timerProps) => {
         </ul>
       </div>
       <div className="button_container">
+        {isFinish ? (
+          <></>
+        ) : isPlay ? (
+          <NoteButton
+            id="timer-button"
+            icon={faPauseCircle}
+            onClick={() => setPlay(false)}
+          />
+        ) : (
+          <NoteButton
+            id="timer-button"
+            icon={faPlayCircle}
+            onClick={() => {
+              setPlay(true);
+            }}
+          />
+        )}
+
         <NoteButton
           id="timer-button"
-          icon={faPlayCircle}
-          onClick={() => setTimerModal(true)}
-        />
-        <NoteButton
-          id="timer-button"
-          icon={faEdit}
-          onClick={() => setEditModal(true)}
-        />
-        <NoteButton
-          id="timer-button"
-          icon={faTrash}
-          onClick={() => props.remove?.(props)}
+          icon={faCheckCircle}
+          onClick={() => setFinish(true)}
         />
       </div>
     </div>

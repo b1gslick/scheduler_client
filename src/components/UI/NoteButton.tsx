@@ -6,6 +6,7 @@ type Props = {
   onClick: any;
   icon: IconProp;
   id?: string;
+  disabled?: boolean;
 };
 
 const NoteButton = (props: Props) => {
