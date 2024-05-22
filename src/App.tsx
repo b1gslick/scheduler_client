@@ -42,7 +42,7 @@ const App = () => {
     <Layout>
       <div className="container">
         <div className="column">
-          <Modal visible={modal} setVisible={setModal}>
+          <Modal visible={modal} makevisible={setModal} data-testid="add-modal">
             <AddNote create={createRow} />
           </Modal>
           <NotesLists notes={notes} remove={removeRow} edit={editRow}>

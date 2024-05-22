@@ -27,13 +27,21 @@ const Note = (props: NoteProps) => {
 
   return (
     <div>
-      <Modal visible={editModal} setVisible={setEditModal}>
+      <Modal
+        visible={editModal}
+        makevisible={setEditModal}
+        data-testid="edit-modal"
+      >
         <EditNote note={props} edit={props.edit}></EditNote>
       </Modal>
-      <Modal visible={playModal} setVisible={setTimerModal}>
+      <Modal
+        visible={playModal}
+        makevisible={setTimerModal}
+        data-testid="timer-modal"
+      >
         <Timer note={props}></Timer>
       </Modal>
-      <a href="#" className="note__container">
+      <a href="#" className="note__container" data-testid="note-container">
         <h2
           className="header"
           data-testid="note-title"
@@ -54,9 +62,21 @@ const Note = (props: NoteProps) => {
           <p data-testid="note-timebox">{convertMinsToHrsMins(props.time)}</p>
         </form>
         <div className="button_container">
-          <NoteButton icon={faPlayCircle} onClick={() => setTimerModal(true)} />
-          <NoteButton icon={faEdit} onClick={() => setEditModal(true)} />
-          <NoteButton icon={faTrash} onClick={() => props.remove?.(props)} />
+          <NoteButton
+            icon={faPlayCircle}
+            onClick={() => setTimerModal(true)}
+            data-testid="note-play-button"
+          />
+          <NoteButton
+            icon={faEdit}
+            data-testid="note-edit-button"
+            onClick={() => setEditModal(true)}
+          />
+          <NoteButton
+            icon={faTrash}
+            data-testid="note-delete-button"
+            onClick={() => props.remove?.(props)}
+          />
         </div>
       </a>
     </div>

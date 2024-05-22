@@ -3,7 +3,7 @@ import AppButton from "../UI/AppButton";
 import "./Note.css";
 import { NoteProps } from "./Note";
 
-interface AddNoteProps {
+export interface AddNoteProps {
   create: (e: NoteProps) => void;
 }
 
@@ -26,10 +26,11 @@ const AddNote = (props: AddNoteProps) => {
     setNote({ id: 0, title: "", description: "", time: 0 });
   };
   return (
-    <div className="note">
+    <div className="note" data-testid="add-note">
       <form>
         <input
           value={note.title}
+          data-testid="input-title"
           onChange={(e: any) => setNote({ ...note, title: e.target.value })}
           className="inputTitle"
           type="text"
@@ -37,6 +38,7 @@ const AddNote = (props: AddNoteProps) => {
         ></input>
         <textarea
           value={note.description}
+          data-testid="input-descr"
           onChange={(e: any) =>
             setNote({ ...note, description: e.target.value })
           }
@@ -45,6 +47,7 @@ const AddNote = (props: AddNoteProps) => {
         ></textarea>
         <input
           value={note.time}
+          data-testid="input-time"
           onChange={(e: any) => setNote({ ...note, time: e.target.value })}
           className="inputTime"
           type="number"
@@ -53,7 +56,9 @@ const AddNote = (props: AddNoteProps) => {
           max={1440}
         ></input>
       </form>
-      <AppButton onClick={addNewNote}>OK</AppButton>
+      <AppButton onClick={addNewNote} data-testid="add-button">
+        OK
+      </AppButton>
     </div>
   );
 };

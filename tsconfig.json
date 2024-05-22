@@ -18,6 +18,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
+    "esModuleInterop": true,
     /* Plugins */
     "plugins": [
       {
@@ -26,6 +27,7 @@
     ]
   },
   "include": ["src", "tests"],
+  "types": ["node", "jest", "@testing-library/jest-dom"],
   "references": [
     {
       "path": "./tsconfig.node.json"

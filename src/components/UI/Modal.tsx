@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import "./Modal.css";
 
-interface modalProps {
+export interface modalProps {
   children: any;
   visible: boolean;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  makevisible: Dispatch<SetStateAction<boolean>>;
 }
 
-const Modal = (props: modalProps) => {
+const Modal = ({ children, visible, makevisible, ...other }) => {
   let rootClasses = ["modal"];
   useEffect(() => {
     const close = (e: any) => {
@@ -19,16 +19,17 @@ const Modal = (props: modalProps) => {
     return () => window.removeEventListener("keydown", close);
   }, []);
 
-  if (props.visible) {
+  if (visible) {
     rootClasses.push("active");
   }
   return (
     <div
       className={rootClasses.join(" ")}
-      onClick={() => props.setVisible(false)}
+      {...other}
+      onClick={() => makevisible(false)}
     >
       <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-        {props.children}
+        {children}
       </div>
     </div>
   );
