@@ -1,8 +1,8 @@
 import { render, fireEvent } from "@testing-library/react";
-import AddNote from "../../src/components/notes/AddNote";
+import AddNote, { AddNoteProps } from "../../src/components/notes/AddNote";
 import { axe } from "jest-axe";
 
-describe("Test notes", () => {
+describe("Test add notes", () => {
   it("Add note render with empty fields", async () => {
     const create = jest.fn();
     const { getByTestId } = renderNote(create as any);
@@ -12,28 +12,48 @@ describe("Test notes", () => {
     expect(getByTestId("input-time").nodeValue).toBeNull();
   });
 
-  type inputTest = { field: string; value: any };
+  type inputTest = { field: string; value: any; expected: string };
 
   it.each<inputTest>([
     {
       field: "input-title",
       value: "test",
-    },
-    {
-      field: "input-descr",
-      value: "test",
+      expected: "test",
     },
     {
       field: "input-time",
       value: 1,
+      expected: "1",
     },
-  ])("Add note has editable fields $$field", async ({ field, value }) => {
+  ])(
+    "Add note has editable fields $$field",
+    async ({ field, value, expected }) => {
+      const create = jest.fn();
+      const { getByTestId } = renderNote(create as any);
+      const input = getByTestId(field);
+      fireEvent.change(input, {
+        target: { value: value },
+      });
+      expect(input).toHaveAttribute("value", expected);
+    },
+  );
+
+  it("Add note has editable field description", async () => {
     const create = jest.fn();
     const { getByTestId } = renderNote(create as any);
-    const input = getByTestId(field);
-    fireEvent.change(input, value);
+    const input = getByTestId("input-descr");
+    fireEvent.change(input, {
+      target: { value: "new value" },
+    });
+    expect(input.textContent).toContain("new value");
+  });
+
+  it("Prease add call function for add note", async () => {
+    const create = jest.fn();
+    const props: AddNoteProps = { create: create };
+    const { getByTestId } = renderNote(props);
     fireEvent.click(getByTestId("add-button"));
-    console.log(input.nodeValue);
+    expect(create).toHaveBeenCalled();
   });
 
   it("should not fail any accessibility tests", async () => {

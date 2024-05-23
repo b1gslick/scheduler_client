@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
 import Note, { NoteProps } from "../../src/components/notes/Note";
 import { axe } from "jest-axe";

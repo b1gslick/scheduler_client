@@ -3,9 +3,9 @@ import AppButton from "../UI/AppButton";
 import "./Note.css";
 import { NoteProps } from "./Note";
 
-export interface AddNoteProps {
+export type AddNoteProps = {
   create: (e: NoteProps) => void;
-}
+};
 
 const AddNote = (props: AddNoteProps) => {
   const [note, setNote] = useState({

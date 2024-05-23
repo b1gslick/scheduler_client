@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import "./Modal.css";
 
 export interface modalProps {
@@ -9,26 +9,27 @@ export interface modalProps {
 
 const Modal = ({ children, visible, makevisible, ...other }) => {
   let rootClasses = ["modal"];
-  useEffect(() => {
-    const close = (e: any) => {
-      if (e.keyCode === 27) {
-        rootClasses = ["modal"];
-      }
-    };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
-  }, []);
+
+  const stopVisible = (e: any) => {
+    e.stopPropagation();
+  };
 
   if (visible) {
     rootClasses.push("active");
   }
   return (
     <div
+      data-testid="modal"
       className={rootClasses.join(" ")}
       {...other}
       onClick={() => makevisible(false)}
     >
-      <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+      <div
+        data-testid="modal-content"
+        className="modalContent"
+        onClick={stopVisible}
+        {...other}
+      >
         {children}
       </div>
     </div>
