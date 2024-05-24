@@ -28,7 +28,6 @@ const Modal = ({ children, visible, makevisible, ...other }) => {
         data-testid="modal-content"
         className="modalContent"
         onClick={stopVisible}
-        {...other}
       >
         {children}
       </div>

@@ -4,7 +4,7 @@ import { NoteProps } from "./Note";
 import "./Note.css";
 
 export type EditNoteProps = {
-  edit: any;
+  edit: (e: NoteProps) => {};
   note: NoteProps;
 };
 
