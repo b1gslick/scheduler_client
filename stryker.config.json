@@ -1,0 +1,7 @@
+{
+  "testRunner": "jest",
+  "jest": {
+    "projectType": "custom",
+    "configFile": "./jestconfig.json"
+  }
+}

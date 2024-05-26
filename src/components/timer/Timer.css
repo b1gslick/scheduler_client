@@ -26,12 +26,12 @@
 }
 
 #countdown li span {
-  dipslay: block;
+  display: block;
   font-size: 4.5rem;
 }
 
 .doubleColomn {
-  dipslay: block;
+  display: block;
   font-size: 4.5rem;
   margin: 0;
   padding: 0;

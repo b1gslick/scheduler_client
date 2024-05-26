@@ -10,12 +10,15 @@
     "preview": "vite preview",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "test": "jest --config jestconfig.json",
-    "prepublishOnly": "npm test && npm run prettier && npm run lint",
+    "prepublishOnly": "yarn test && yarn run prettier && yarn run lint",
     "typecheck": "tsc"
   },
   "keywords": [],
   "author": "",
   "devDependencies": {
+    "@stryker-mutator/core": "^8.2.6",
+    "@stryker-mutator/jest-runner": "^8.2.6",
+    "@stryker-mutator/typescript-checker": "^8.2.6",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.6",
     "@testing-library/user-event": "^14.5.2",
