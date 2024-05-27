@@ -2,8 +2,7 @@ ARG NODE_VERSION=21-alpine
 FROM node:${NODE_VERSION} as builder
 
 WORKDIR /code
-COPY package.json /code/
-COPY yarn.lock /code/
+COPY package.json yarn.lock /code/
 
 RUN --mount=type=bind,source=src,target=/code/src \
   --mount=type=bind,source=tsconfig.json,target=/code/tsconfig.json \
@@ -16,28 +15,24 @@ RUN --mount=type=bind,source=src,target=/code/src \
 
 FROM node:${NODE_VERSION} as final
 
-# create simple user
+RUN npm install --global serve@14
+
 ARG UID=10001
-RUN adduser \
-  --disabled-password \
-  --gecos "" \
-  --home "/nonexistent" \
-  --shell "/sbin/nologin" \
-  --no-create-home \
-  --uid "${UID}" \
-  appuser
+RUN adduser appuser \
+  --disabled-password
+
 USER appuser
 
 WORKDIR /app
 
-COPY package.json /app
-COPY yarn.lock /app
 # copy binaries
-COPY --chown=appuser:appuser --from=builder /dist/* /app
-# expose port
-EXPOSE 3000
+COPY --chown=appuser:appuser --from=builder /code/dist/ /app/
 
-CMD ["yarn", "preview", "-p 3000"]
+
+# expose port
+EXPOSE 80
+
+CMD ["serve", "/app", "-l", "80"]
 
 
 
