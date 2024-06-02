@@ -107,6 +107,8 @@ module Utils
 
     one.height.times do |y|
       one.row(y).each_with_index do |pixel, x|
+        two[x, y]
+
         next if pixel == two[x, y]
 
         score = Math.sqrt(
@@ -117,6 +119,8 @@ module Utils
 
         output[x, y] = ChunkyPNG::Color.grayscale(255 - (score * 255).round)
         diff << score
+      rescue ChunkyPNG::OutOfBounds => _e
+        next
       end
     end
     output.save("./spec/screenshots/diff_#{current}") if diff.length > 150
