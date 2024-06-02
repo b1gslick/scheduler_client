@@ -30,7 +30,7 @@ describe("Test timer", () => {
     expect(queryByTestId("timer-pause")).toBeNull();
   });
 
-  it("after press finish timer putton are not active", async () => {
+  it("after press finish timer button are not active", async () => {
     const { getByTestId, queryByTestId } = renderTimer({ time: 121 });
     fireEvent.click(getByTestId("timer-finish"));
     expect(queryByTestId("timer-pause")).toBeNull();

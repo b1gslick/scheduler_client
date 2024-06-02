@@ -48,7 +48,7 @@ describe("Test add notes", () => {
     expect(input.textContent).toContain("new value");
   });
 
-  it("Prease add call function for add note", async () => {
+  it("Press add call function for add note", async () => {
     const create = jest.fn();
     const props: AddNoteProps = { create: create };
     const { getByTestId } = renderNote(props);

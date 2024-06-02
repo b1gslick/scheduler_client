@@ -8,15 +8,7 @@ import Layout from "./layout";
 import { NoteProps } from "./components/notes/Note";
 
 const App = () => {
-  let note: NoteProps[] = [
-    {
-      id: 1,
-      title: "Make good app",
-      description: "For this activities",
-      time: 500,
-      isFinish: false,
-    },
-  ];
+  let note: NoteProps[] = [];
   const [notes, setRows] = useState(note);
   const [modal, setModal] = useState(false);
 
@@ -53,4 +45,5 @@ const App = () => {
     </Layout>
   );
 };
+
 export default App;
