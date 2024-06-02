@@ -1,18 +1,18 @@
 import { ReactNode } from "react";
 import Note, { NoteProps } from "../notes/Note";
 
-interface NotesListProps {
+export type NotesListProps = {
   notes: NoteProps[];
   remove: any;
   edit: any;
-  children: ReactNode;
-}
+  children?: ReactNode;
+};
 
 const NotesLists = (props: NotesListProps) => {
   return (
     <ul>
-      {props.notes.map((note) => (
-        <li key={note.id}>
+      {props.notes.map((note, index) => (
+        <li key={index}>
           <Note
             remove={props.remove}
             {...note}

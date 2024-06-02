@@ -1,8 +1,8 @@
 {
+  "preset": "ts-jest",
   "transform": {
     "^.+\\.(t|j)sx?$": "ts-jest"
   },
-  "testRegex": "((\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "moduleNameMapper": {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
