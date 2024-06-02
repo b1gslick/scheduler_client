@@ -44,7 +44,7 @@ describe("Edit note tests", () => {
     expect(edit).toHaveBeenCalled();
   });
 
-  it.skip("should not fail any accessibility tests", async () => {
+  it("should not fail any accessibility tests", async () => {
     const { container } = renderEdit();
     expect(await axe(container)).toHaveNoViolations();
   });

@@ -56,7 +56,7 @@ describe("Test add notes", () => {
     expect(create).toHaveBeenCalled();
   });
 
-  it.skip("should not fail any accessibility tests", async () => {
+  it("should not fail any accessibility tests", async () => {
     const create = jest.fn();
     const { container } = renderNote(create as any);
     expect(await axe(container)).toHaveNoViolations();

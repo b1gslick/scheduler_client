@@ -47,7 +47,7 @@ describe("Test notes", () => {
     expect(remove).toHaveBeenCalled();
   });
 
-  it.skip("should not fail any accessibility tests", async () => {
+  it("should not fail any accessibility tests", async () => {
     const { container } = renderNote();
     expect(await axe(container)).toHaveNoViolations();
   });

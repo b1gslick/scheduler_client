@@ -36,7 +36,7 @@ describe("Modal", () => {
     fireEvent.click(document);
   });
 
-  it.skip("should not fail any accessibility tests", async () => {
+  it("should not fail any accessibility tests", async () => {
     const { container } = renderModal({ visible: true });
     expect(await axe(container)).toHaveNoViolations();
   });

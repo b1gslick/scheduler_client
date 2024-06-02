@@ -73,7 +73,7 @@ describe("Test timer", () => {
     }, 5000);
   });
 
-  it.skip("should not fail any accessibility tests", async () => {
+  it("should not fail any accessibility tests", async () => {
     const { container } = renderTimer();
     expect(await axe(container)).toHaveNoViolations();
   });
