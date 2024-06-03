@@ -27,7 +27,7 @@ describe 'Basic user flow' do
     driver.quit
   end
 
-  it 'User can add several note, play and stop timer, then delete note', skip: true do
+  it 'User can add several note, play and stop timer, then delete note' do
     add_note(1, 60)
     add_note(2, 60)
     press_first_timer
@@ -42,7 +42,7 @@ describe 'Basic user flow' do
     not_visible(1) { expect(driver.find_element(:xpath, '//h2[contains(text(), "test1")]')).to eql(true) }
   end
 
-  it 'User can add several note, play until time is, then note mark as finish', skip: true do
+  it 'User can add several note, play until time is, then note mark as finish' do
     add_note(1, 0.025)
     add_note(2, 0.025)
     press_first_timer
@@ -53,7 +53,7 @@ describe 'Basic user flow' do
     try_for(1) { expect(driver.find_element(:id, 'seconds').text).to eql('00') }
   end
 
-  it 'User can add new note, play time and mark it as finish', skip: true do
+  it 'User can add new note, play time and mark it as finish' do
     add_note(1, 5)
     press_first_timer
     try_for(2) { expect(driver.find_element(:id, 'seconds').text).to eql('59') }
