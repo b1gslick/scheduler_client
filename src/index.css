@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  background-color: grey;
+  margin: 20px auto;
+}

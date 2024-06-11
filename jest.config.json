@@ -1,0 +1,12 @@
+{
+  "preset": "ts-jest",
+  "transform": {
+    "^.+\\.(t|j)sx?$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["<rootDir>/tests/setup.ts"]
+}

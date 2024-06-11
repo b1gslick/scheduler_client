@@ -1,0 +1,67 @@
+:root {
+  --smaller: 0.6;
+}
+
+.timerContainer {
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+  height: auto;
+  width: auto;
+  background-color: #ffc;
+  border: 5px solid;
+}
+
+#countdown li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 0.5em;
+}
+
+.clock-text {
+  font-size: 1.5em;
+  list-style-type: none;
+  text-transform: uppercase;
+}
+
+#countdown li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+.doubleColomn {
+  display: block;
+  font-size: 4.5rem;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  top: 0.5em;
+}
+
+#timer-button {
+  width: auto;
+  font-size: 2.5rem;
+  justify-content: space-around;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+@media all and (max-width: 768px) {
+  #countdown li {
+    font-size: calc(1.125rem * var(--smaller));
+  }
+
+  #countdown li span {
+    font-size: calc(3.375rem * var(--smaller));
+  }
+  #countdown .doubleColomn {
+    font-size: calc(3.375rem * var(--smaller));
+    top: 0.45em;
+  }
+}

@@ -1,0 +1,30 @@
+body {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.container {
+  margin: 20px auto;
+  max-width: 100vh;
+  max-height: 100vh;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.column {
+  float: left;
+  width: 100%;
+}
+
+.note::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 480px) {
+  .column {
+    width: 100%;
+  }
+}

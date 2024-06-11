@@ -1,18 +1,49 @@
-import React from 'react'
+import "./App.css";
+import { useState } from "react";
+import NotesLists from "./components/notes_list/NotesLists";
+import AddNoteButton from "./components/UI/AddNoteButton";
+import Modal from "./components/UI/Modal";
+import AddNote from "./components/notes/AddNote";
+import Layout from "./layout";
+import { NoteProps } from "./components/notes/Note";
 
-function App() {
+const App = () => {
+  let note: NoteProps[] = [];
+  const [notes, setRows] = useState(note);
+  const [modal, setModal] = useState(false);
+
+  const createRow = (newPost: NoteProps) => {
+    setRows([...notes, newPost]);
+  };
+
+  const removeRow = (note: NoteProps) => {
+    setRows(notes.filter((n) => n.id !== note.id));
+  };
+
+  const editRow = (note: NoteProps) => {
+    let newNotes: NoteProps[] = notes.map((r: NoteProps) => {
+      if (r.id === note.id) {
+        return note;
+      }
+      return r;
+    });
+    setRows([...newNotes]);
+  };
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-          - Learn React + Learn React!!!
-        </a>
-      </header>
-    </div>
-  )
-}
+    <Layout>
+      <div className="container">
+        <div className="column">
+          <Modal visible={modal} makevisible={setModal} data-testid="add-modal">
+            <AddNote create={createRow} />
+          </Modal>
+          <NotesLists notes={notes} remove={removeRow} edit={editRow}>
+            <AddNoteButton onClick={() => setModal(true)} />
+          </NotesLists>
+        </div>
+      </div>
+    </Layout>
+  );
+};
 
-export default App
+export default App;
