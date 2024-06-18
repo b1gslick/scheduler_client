@@ -56,7 +56,7 @@ jobs:
           node: $NODE_VERSION
           cache: "yarn"
       - name: Run performance tests
-        run: ../../reassure-tests.sh
+        run: ./reassure-tests.sh
 
   build-stage:
     name: Build docker container
