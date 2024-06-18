@@ -5,7 +5,12 @@ describe 'Test render app with different resolution' do
   include Utils
 
   before(:each) do
-    @driver = Selenium::WebDriver.for(browser_type, browser_options)
+    @driver = if grid != 'true'
+                Selenium::WebDriver.for(browser_type, browser_options)
+              else
+                Selenium::WebDriver.for(:remote, url: grid_url, http_client: http_client,
+                                                 options: browser_options[:options])
+              end
   end
 
   after(:each) do

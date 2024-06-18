@@ -63,6 +63,24 @@ module Utils
     end
   end
 
+  def http_client
+    return unless ENV['GRID']
+
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.read_timeout = 600 # seconds
+    client
+  end
+
+  def grid
+    ENV['GRID'] || false
+  end
+
+  def grid_url
+    return unless ENV['GRID_URL'] && !ENV['GRID_URL'].empty?
+
+    "http://#{ENV['GRID_URL']}:4444"
+  end
+
   def browser_type
     if ENV['BROWSER'] && !ENV['BROWSER'].empty?
       ENV['BROWSER'].downcase.to_sym

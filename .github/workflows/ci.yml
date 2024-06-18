@@ -3,9 +3,63 @@ name: Docker build
 
 on: [push]
 
+env:
+  NODE_VERSION: 20
+
 jobs:
-  docker-build:
-    name: Docker build & push
+  pre-build-stage:
+    name: Static check code and small tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node: $NODE_VERSION
+          cache: "yarn"
+
+      - name: Typescript check
+        run: yarn typecheck
+
+      - name: Lint code
+        run: yarn lint
+
+      - name: Run small tests
+        run: yarn test
+
+  security-audit:
+    name: Security audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node: $NODE_VERSION
+          cache: "yarn"
+
+      - name: Security audit
+        run: yarn add --save better-npm-audit && yarn better-npm-audit audit
+
+  performance-tests:
+    name: Performance tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node: $NODE_VERSION
+          cache: "yarn"
+      - name: Run performance tests
+        run: ../../reassure-tests.sh
+
+  build-stage:
+    name: Build docker container
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
@@ -35,3 +89,70 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }},t1mon1106/scheduler_client:latest
           labels: ${{ steps.meta.outputs.labels }}
+
+  large-tests:
+    name: Large tests
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.ref_name }}
+
+    container:
+      image: ruby:bookworm
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: ["chrome", "firefox", "edge"]
+
+    services:
+      selenium:
+        image: selenium/standalone-${{ matrix.browser }}
+        options: --shm-size=2gb
+      backend:
+        image: t1mon1106/scheduler_client:$TAG
+        ports:
+          - 80:80
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Prepare
+        run: bundle install
+      - name: Tests
+        env:
+          BROWSER: ${{ matrix.browser }}
+          GRID: true
+          GRID_URL: selenium
+          BASE_URL: http://backend
+        run: cd large-tests && rspec spec/test_basic* --format doc
+
+  resolution-tests:
+    name: Check resolutions diffs
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: ["chrome", "firefox", "edge"]
+
+    services:
+      selenium:
+        image: selenium/standalone-${{ matrix.browser }}
+        options: --shm-size=2gb
+      backend:
+        image: t1mon1106/scheduler_client:$TAG
+        ports:
+          - 80:80
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Prepare
+        run: bundle install
+      - name: Tests
+        env:
+          BROWSER: ${{ matrix.browser }}
+          GRID: true
+          GRID_URL: selenium
+          BASE_URL: http://backend
+        run: cd large-tests && rspec spec/test_basic* --format doc
