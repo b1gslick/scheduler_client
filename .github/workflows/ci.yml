@@ -42,7 +42,7 @@ jobs:
           cache: "yarn"
 
       - name: Security audit
-        run: yarn add --save better-npm-audit && yarn better-npm-audit audit
+        run: yarn audit
 
   performance-tests:
     name: Performance tests
