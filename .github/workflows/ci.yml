@@ -19,6 +19,8 @@ jobs:
         with:
           node: $NODE_VERSION
           cache: "yarn"
+      - name: install
+        run: yarn install
 
       - name: Typescript check
         run: yarn typecheck
