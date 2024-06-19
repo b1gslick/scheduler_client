@@ -123,7 +123,7 @@ jobs:
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
-        run: rspec spec/test_basic* --format doc
+        run: cd large_tests && rspec spec/test_basic* --format doc
 
   resolution-tests:
     name: Check resolutions diffs
@@ -134,6 +134,9 @@ jobs:
       fail-fast: false
       matrix:
         browser: ["chrome", "firefox", "edge"]
+
+    container:
+      image: ruby:bookworm
 
     services:
       selenium:
@@ -155,4 +158,4 @@ jobs:
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
-        run: rspec spec/test_basic* --format doc
+        run: cd large_tests && rspec spec/test_basic* --format doc
