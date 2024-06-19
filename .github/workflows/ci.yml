@@ -165,4 +165,4 @@ jobs:
         if: always()
         with:
           name: ${{ matrix.browser }}
-          path: large_tests/spec/
+          path: large_tests/
