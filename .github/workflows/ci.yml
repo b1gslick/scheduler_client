@@ -116,7 +116,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: cd large_tests && bundle install
+        run: cd large_tests && gem install bundler && bundle install
       - name: Tests
         env:
           BROWSER: ${{ matrix.browser }}
@@ -148,7 +148,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: cd large_tests && bundle install
+        run: cd large_tests && gem install bundler && bundle install
       - name: Tests
         env:
           BROWSER: ${{ matrix.browser }}
