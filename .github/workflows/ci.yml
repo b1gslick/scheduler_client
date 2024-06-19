@@ -158,4 +158,11 @@ jobs:
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
+          HEADLESS: true
         run: cd large_tests && rspec spec/test_resolutions* --format doc
+      - name: artifacts
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: ${{ matrix.browser }}
+          path: large_tests/spec/
