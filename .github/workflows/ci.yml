@@ -97,8 +97,6 @@ jobs:
     name: Large tests
     runs-on: ubuntu-latest
     needs: [build-stage]
-    env:
-      TAG: ${{ github.ref_name }}
 
     container:
       image: ruby:bookworm
@@ -113,7 +111,7 @@ jobs:
         image: selenium/standalone-${{ matrix.browser }}
         options: --shm-size=2gb
       backend:
-        image: t1mon1106/scheduler_client:$TAG
+        image: t1mon1106/scheduler_client:${{ github.ref_name }}
         ports:
           - 80:80
 
@@ -145,7 +143,7 @@ jobs:
         image: selenium/standalone-${{ matrix.browser }}
         options: --shm-size=2gb
       backend:
-        image: t1mon1106/scheduler_client:$TAG
+        image: t1mon1106/scheduler_client:${{ github.ref_name }}
         ports:
           - 80:80
 
