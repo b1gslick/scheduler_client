@@ -17,7 +17,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node: $NODE_VERSION
+          node_version: $NODE_VERSION
           cache: "yarn"
       - name: install
         run: yarn install
@@ -40,7 +40,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node: $NODE_VERSION
+          node_version: $NODE_VERSION
           cache: "yarn"
 
       - name: Security audit
@@ -55,7 +55,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node: $NODE_VERSION
+          node_version: $NODE_VERSION
           cache: "yarn"
       - name: Run performance tests
         run: ./reassure-tests.sh
@@ -119,14 +119,14 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: bundle install
+        run: cd large-tests && bundle install
       - name: Tests
         env:
           BROWSER: ${{ matrix.browser }}
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
-        run: cd large-tests && rspec spec/test_basic* --format doc
+        run: rspec spec/test_basic* --format doc
 
   resolution-tests:
     name: Check resolutions diffs
@@ -151,11 +151,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: bundle install
+        run: cd large-tests && bundle install
       - name: Tests
         env:
           BROWSER: ${{ matrix.browser }}
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
-        run: cd large-tests && rspec spec/test_basic* --format doc
+        run: rspec spec/test_basic* --format doc
