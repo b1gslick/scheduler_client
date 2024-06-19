@@ -158,4 +158,4 @@ jobs:
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
-        run: cd large_tests && rspec spec/test_basic* --format doc
+        run: cd large_tests && rspec spec/test_resolutions* --format doc
