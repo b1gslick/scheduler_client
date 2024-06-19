@@ -28,15 +28,19 @@ const AddNote = (props: AddNoteProps) => {
   return (
     <div className="note" data-testid="add-note">
       <form>
+        <label htmlFor="title"></label>
         <input
           value={note.title}
+          name="title"
           data-testid="input-title"
           onChange={(e: any) => setNote({ ...note, title: e.target.value })}
           className="inputTitle"
           type="text"
           placeholder="Title for activities"
         ></input>
+        <label htmlFor="description"></label>
         <textarea
+          name="description"
           value={note.description}
           data-testid="input-descr"
           onChange={(e: any) =>
@@ -45,8 +49,10 @@ const AddNote = (props: AddNoteProps) => {
           className="inputDesc"
           placeholder="Description about activities"
         ></textarea>
+        <label htmlFor="time"></label>
         <input
           value={note.time}
+          name="time"
           data-testid="input-time"
           onChange={(e: any) => setNote({ ...note, time: e.target.value })}
           className="inputTime"
@@ -56,7 +62,8 @@ const AddNote = (props: AddNoteProps) => {
           max={1440}
         ></input>
       </form>
-      <AppButton onClick={addNewNote} data-testid="add-button">
+      <label htmlFor="ok"></label>
+      <AppButton name="ok" onClick={addNewNote} data-testid="add-button">
         OK
       </AppButton>
     </div>

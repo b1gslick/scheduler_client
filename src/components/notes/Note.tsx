@@ -63,16 +63,19 @@ const Note = (props: NoteProps) => {
         </form>
         <div className="button_container">
           <NoteButton
+            aria-label="play button"
             icon={faPlayCircle}
             onClick={() => setTimerModal(true)}
             data-testid="note-play-button"
           />
           <NoteButton
+            aria-label="edit button"
             icon={faEdit}
             data-testid="note-edit-button"
             onClick={() => setEditModal(true)}
           />
           <NoteButton
+            aria-label="delete button"
             icon={faTrash}
             data-testid="note-delete-button"
             onClick={() => props.remove?.(props)}
