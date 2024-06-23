@@ -18,8 +18,13 @@ describe 'Basic user flow' do
   end
 
   before(:each) do
-    @driver = Selenium::WebDriver.for(browser_type, browser_options)
-    driver.manage.window.resize_to(1280, 720)
+    @driver = if grid != 'true'
+                Selenium::WebDriver.for(browser_type, browser_options)
+              else
+                Selenium::WebDriver.for(:remote, url: grid_url, http_client: http_client,
+                                                 options: browser_options[:options])
+              end
+    driver.manage.window.resize_to(1920, 1024)
     driver.get(site_url)
   end
 

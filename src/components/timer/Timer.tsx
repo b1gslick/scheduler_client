@@ -42,14 +42,14 @@ const Timer = (props: timerProps) => {
             </span>
             <div className="clock-text">hours</div>
           </li>
-          <span className="doubleColomn">:</span>
+          <li className="doubleColomn">:</li>
           <li>
             <span id="minutes" data-testid="timer-minutes">
               {minutes < 10 ? "0" + minutes : minutes}
             </span>
             <div className="clock-text">minutes</div>
           </li>
-          <span className="doubleColomn">:</span>
+          <li className="doubleColomn">:</li>
           <li>
             <span id="seconds" data-testid="timer-seconds">
               {seconds < 10 ? "0" + seconds : seconds}
@@ -64,14 +64,16 @@ const Timer = (props: timerProps) => {
         ) : isPlay ? (
           <NoteButton
             data-testid="timer-pause"
-            id="timer-button"
+            aria-label="pause"
+            id="timer-button-pause"
             icon={faPauseCircle}
             onClick={() => setPlay(false)}
           />
         ) : (
           <NoteButton
             data-testid="timer-play"
-            id="timer-button"
+            aria-label="play"
+            id="timer-button-play"
             icon={faPlayCircle}
             onClick={() => {
               setPlay(true);
@@ -81,7 +83,8 @@ const Timer = (props: timerProps) => {
 
         <NoteButton
           data-testid="timer-finish"
-          id="timer-button"
+          id="timer-button-finish"
+          aria-label="finish"
           icon={faCheckCircle}
           onClick={() => setFinish(true)}
         />

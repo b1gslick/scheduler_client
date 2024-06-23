@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BASELINE_BRANCH=${BASELINE_BRANCH:="lesson-1"}
+BASELINE_BRANCH=${BASELINE_BRANCH:="main"}
 
 # Required for `git switch` on CI
 git fetch origin

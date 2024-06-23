@@ -5,6 +5,7 @@ import "./AddButton.css";
 const AddNoteButton = (props: any) => {
   return (
     <button
+      buttonname="add_note_button"
       className="note__addButton"
       data-testid="add-note-button"
       {...props}

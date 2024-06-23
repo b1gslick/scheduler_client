@@ -2,6 +2,7 @@ import "./AppButton.css";
 
 interface ButtonProps {
   onClick: (e: any) => void;
+  name?: string;
   children: any;
 }
 
