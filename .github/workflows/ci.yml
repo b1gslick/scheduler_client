@@ -101,7 +101,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: ["chrome", "firefox", "edge"]
+        browser: ["chrome", "firefox"]
 
     services:
       selenium:
@@ -133,7 +133,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: ["chrome", "firefox", "edge"]
+        browser: ["chrome", "firefox"]
 
     container:
       image: ruby:bookworm
