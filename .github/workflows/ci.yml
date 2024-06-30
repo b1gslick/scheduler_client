@@ -140,7 +140,7 @@ jobs:
 
     services:
       selenium:
-        image: selenium/standalone-${{ matrix.browser }}
+        image: selenium/standalone-chrome
         options: --shm-size=2gb
       backend:
         image: t1mon1106/scheduler_client:${{ github.ref_name }}
@@ -164,5 +164,5 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: ${{ matrix.browser }}
+          name: chrome
           path: large_tests/
