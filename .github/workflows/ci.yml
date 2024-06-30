@@ -11,6 +11,8 @@ jobs:
     name: Static check code and small tests
     runs-on: ubuntu-latest
     steps:
+      - name: test
+        run: echo $NODE_VERSION
       - name: Check out the repo
         uses: actions/checkout@v4
 
