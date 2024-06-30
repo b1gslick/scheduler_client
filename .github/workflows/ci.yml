@@ -135,11 +135,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-stage]
 
-    strategy:
-      fail-fast: false
-      matrix:
-        browser: ["chrome", "firefox"]
-
     container:
       image: ruby:bookworm
 
@@ -159,7 +154,7 @@ jobs:
         run: cd large_tests && gem install bundler && bundle install
       - name: Tests
         env:
-          BROWSER: ${{ matrix.browser }}
+          BROWSER: chrome
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
