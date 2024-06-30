@@ -4,7 +4,7 @@ name: Docker build
 on: [push]
 
 env:
-  NODE_VERSION: 20
+  NODE_VERSION: 20.x
 
 jobs:
   pre-build-stage:
