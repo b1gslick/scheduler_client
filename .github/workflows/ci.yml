@@ -3,6 +3,9 @@ name: Docker build
 
 on: [push]
 
+env:
+  NODE_VERSION: 20
+
 jobs:
   pre-build-stage:
     name: Static check code and small tests
@@ -14,7 +17,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: $NODE_VERSION
           cache: "yarn"
       - name: install
         run: yarn install
@@ -37,7 +40,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: $NODE_VERSION
           cache: "yarn"
 
       - name: Security audit
@@ -52,7 +55,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: $NODE_VERSION
           cache: "yarn"
       - name: Run performance tests
         run: ./reassure-tests.sh
