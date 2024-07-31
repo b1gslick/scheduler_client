@@ -1,22 +1,20 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Layout from "./layout";
-import NotesPage from "./pages/NotesPage";
-import Login from "./pages/Login";
-import Registration from "./pages/Registration";
+import { AuthContext } from "./context";
+import { useState } from "react";
+import AppRoutes from "./routes/router";
 
 const App = () => {
+  const [isAuth, setIsAuth] = useState(false);
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<NotesPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="*" element={<NotesPage />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <AuthContext.Provider value={{ isAuth, setIsAuth } as any}>
+      <BrowserRouter>
+        <Layout>
+          <AppRoutes />
+        </Layout>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 };
 

@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <div>
       <NavBar />
-      <h3 className="header__container"></h3>
+      <h1 className="header__container"></h1>
     </div>
   );
 };

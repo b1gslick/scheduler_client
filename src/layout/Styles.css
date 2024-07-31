@@ -1,9 +1,10 @@
 .header__container {
   text-align: center;
   margin: 0px;
-  font-size: 20px;
+  font-size: 60px;
   float: left;
   width: 49%;
+  font-family: sans-serif;
 }
 
 .timer {

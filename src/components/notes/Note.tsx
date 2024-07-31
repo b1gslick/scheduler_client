@@ -49,7 +49,7 @@ const Note = (props: NoteProps) => {
         >
           {props.title}
         </h2>
-        <form className="title">
+        <form className="title form_notes">
           <p
             className="title"
             data-testid="note-desc"
@@ -58,7 +58,7 @@ const Note = (props: NoteProps) => {
             {props.description}
           </p>
         </form>
-        <form className="time">
+        <form className="time form_notes">
           <p data-testid="note-timebox">{convertMinsToHrsMins(props.time)}</p>
         </form>
         <div className="button_container">

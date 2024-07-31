@@ -10,7 +10,7 @@
   transition: transform 0.15s linear;
 }
 
-form {
+form .form_notes {
   display: grid;
   gap: 10px;
   grid-auto-columns: auto;
