@@ -16,7 +16,7 @@ export type NoteProps = {
   title: string;
   description: string;
   isFinish: boolean;
-  time: number;
+  time: any;
   remove?: any;
   edit?: any;
 };

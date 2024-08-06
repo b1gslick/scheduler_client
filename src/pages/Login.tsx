@@ -5,7 +5,7 @@ import { AuthContextType } from "../global";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { isAuth, setIsAuth } = useContext(AuthContext) as AuthContextType;
+  const { setIsAuth } = useContext(AuthContext) as AuthContextType;
   const navigate = useNavigate();
   const login = (event: any) => {
     event.preventDefault();

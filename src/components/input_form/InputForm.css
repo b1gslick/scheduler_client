@@ -1,11 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
 
-* {
+.login_form form {
   box-sizing: border-box;
   font-family: Raleway, sans-serif;
-}
-
-form {
   display: grid;
   gap: 10px;
   grid-auto-columns: auto;
@@ -23,6 +20,8 @@ form {
 }
 
 .login_form {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   min-height: 50vw;
   min-width: 100vw;
   display: flex;
@@ -32,6 +31,8 @@ form {
 
 .form_user,
 .form_user:is(:-webkit-autofill, :autofill) {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   position: absolute;
   top: 35px;
   left: 10px;
@@ -40,6 +41,8 @@ form {
 }
 
 .form_pass {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   position: absolute;
   top: 110px;
   left: 10px;
@@ -49,6 +52,8 @@ form {
 
 .login_input,
 .login_input:is(:-webkit-autofill, :autofill) {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   border: none;
   border-bottom: 2px solid gray;
   background: none;
@@ -62,11 +67,15 @@ form {
 .login_input:active,
 .login_input:focus,
 .login_input:hover {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   outline: none;
   border-bottom-color: black;
 }
 
 .form_submit {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   background: #ffc;
   font-size: 14px;
   margin-top: 10px;
@@ -88,6 +97,8 @@ form {
 .form_submit:active,
 .form_submit:focus,
 .form_submit:hover {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
   border-color: black;
   outline: none;
   background: #ffd;

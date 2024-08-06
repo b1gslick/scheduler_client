@@ -23,6 +23,10 @@ form .form_notes {
   color: #000;
   background: #ffc;
   font-size: 24px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  border: 0px solid gray;
 }
 
 .inputDesc {
