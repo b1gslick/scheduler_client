@@ -12,7 +12,7 @@ export type InputFromProps = {
 const InputForm = (props: InputFromProps) => {
   const location = useLocation();
   return (
-    <div className="login_form" datatest-id={props.datatestid}>
+    <div className="login_form" data-testid={props.datatestid}>
       <form onSubmit={props.callback}>
         <FontAwesomeIcon className="form_user" icon={faUser}></FontAwesomeIcon>
         <input
@@ -20,7 +20,7 @@ const InputForm = (props: InputFromProps) => {
           type="text"
           placeholder="Enter Login"
           name="uname"
-          datatest-id="login_username"
+          data-testid="login_username"
           aria-placeholder="Email"
         ></input>
         <FontAwesomeIcon className="form_pass" icon={faLock}></FontAwesomeIcon>
@@ -29,7 +29,7 @@ const InputForm = (props: InputFromProps) => {
           type="password"
           placeholder="Enter password"
           name="psw"
-          datatest-id="login_password"
+          data-testid="login_password"
         ></input>
         {location.pathname === "/registration" ? (
           <input
@@ -37,7 +37,7 @@ const InputForm = (props: InputFromProps) => {
             type="password"
             placeholder="Enter Confirm Password"
             name="confirm"
-            datatest-id="login_confirm"
+            data-testid="login_confirm"
           ></input>
         ) : (
           <></>
