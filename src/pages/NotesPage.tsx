@@ -28,14 +28,18 @@ const NotesPage = () => {
     setRows([...newNotes]);
   };
 
+  const setVisibleAddNote = (visible: boolean) => {
+    setModal(visible);
+  };
+
   return (
     <div className="container">
       <div className="column">
         <Modal visible={modal} makevisible={setModal} data-testid="add-modal">
-          <AddNote create={createRow} />
+          <AddNote create={createRow} modalState={setVisibleAddNote} />
         </Modal>
         <NotesLists notes={notes} remove={removeRow} edit={editRow}>
-          <AddNoteButton onClick={() => setModal(true)} />
+          <AddNoteButton onClick={() => setVisibleAddNote(true)} />
         </NotesLists>
       </div>
     </div>

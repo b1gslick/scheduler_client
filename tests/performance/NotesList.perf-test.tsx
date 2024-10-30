@@ -1,5 +1,6 @@
 import { measurePerformance } from "reassure";
 import NotesLists from "../../src/components/notes_list/NotesLists";
+import { TimerProvider } from "../../src/context";
 
 test.each([1, 10, 100])(
   "Notes List render with %i notes",
@@ -31,7 +32,11 @@ test.each([1, 10, 100])(
       noteListProps.notes.push(note);
     }
 
-    await measurePerformance(<NotesLists {...noteListProps} />);
+    await measurePerformance(
+      <TimerProvider>
+        <NotesLists {...noteListProps} />
+      </TimerProvider>,
+    );
   },
   50000,
 );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoteButton from "../UI/NoteButton";
 import "./NoteStyles.css";
 import {
@@ -10,6 +10,7 @@ import Modal from "../UI/Modal";
 import EditNote from "./EditNote";
 import Timer from "../timer/Timer";
 import { convertMinsToHrsMins } from "../../utils/helper";
+import { useTimer } from "../../hooks/timer_state";
 
 export type NoteProps = {
   id: number;
@@ -22,8 +23,13 @@ export type NoteProps = {
 };
 
 const Note = (props: NoteProps) => {
+  const { setTimer } = useTimer();
   const [editModal, setEditModal] = useState(false);
   const [playModal, setTimerModal] = useState(false);
+
+  useEffect(() => {
+    return () => {};
+  }, []);
 
   return (
     <div>
@@ -32,7 +38,11 @@ const Note = (props: NoteProps) => {
         makevisible={setEditModal}
         data-testid="edit-modal"
       >
-        <EditNote note={props} edit={props.edit}></EditNote>
+        <EditNote
+          note={props}
+          edit={props.edit}
+          modalState={setEditModal}
+        ></EditNote>
       </Modal>
       <Modal
         visible={playModal}
@@ -65,7 +75,10 @@ const Note = (props: NoteProps) => {
           <NoteButton
             aria-label="play button"
             icon={faPlayCircle}
-            onClick={() => setTimerModal(true)}
+            onClick={() => {
+              setTimer(props.time * 60);
+              setTimerModal(true);
+            }}
             data-testid="note-play-button"
           />
           <NoteButton

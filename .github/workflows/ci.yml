@@ -112,7 +112,7 @@ jobs:
       selenium:
         image: selenium/standalone-${{ matrix.browser }}
         options: --shm-size=2gb
-      backend:
+      frontend:
         image: t1mon1106/scheduler_client:${{ github.ref_name }}
         ports:
           - 80:80
@@ -121,14 +121,14 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: cd large_tests && gem install bundler && bundle install
+        run: cd tests/large_tests && gem install bundler && bundle install
       - name: Tests
         env:
           BROWSER: ${{ matrix.browser }}
           GRID: true
           GRID_URL: selenium
-          BASE_URL: http://backend
-        run: cd large_tests && rspec spec/test_basic* --format doc
+          BASE_URL: http://frontend
+        run: cd tests/large_tests && rspec spec/test_basic* --format doc
 
   resolution-tests:
     name: Check resolutions diffs
@@ -142,7 +142,7 @@ jobs:
       selenium:
         image: selenium/standalone-chrome
         options: --shm-size=2gb
-      backend:
+      frontend:
         image: t1mon1106/scheduler_client:${{ github.ref_name }}
         ports:
           - 80:80
@@ -151,18 +151,18 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: cd large_tests && gem install bundler && bundle install
+        run: cd tests/large_tests && gem install bundler && bundle install
       - name: Tests
         env:
           BROWSER: chrome
           GRID: true
           GRID_URL: selenium
-          BASE_URL: http://backend
+          BASE_URL: http://frontend
           HEADLESS: true
-        run: cd large_tests && rspec spec/test_resolutions* --format doc
+        run: cd tests/large_tests && rspec spec/test_resolutions* --format doc
       - name: artifacts
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: chrome
-          path: large_tests/
+          path: tests/large_tests/*.png
