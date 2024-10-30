@@ -33,7 +33,7 @@ describe("Edit note tests", () => {
       expect(edit).toHaveBeenCalled();
     },
   );
-  it("Can edit description, expect in the fiels new value", async () => {
+  it("Can edit description, expect in the fields new value", async () => {
     const edit = jest.fn();
     const { getByTestId } = renderEdit({ edit: edit });
     fireEvent.change(getByTestId("edit-descr"), {

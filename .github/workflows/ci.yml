@@ -121,14 +121,14 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: cd large_tests && gem install bundler && bundle install
+        run: cd tests/large_tests && gem install bundler && bundle install
       - name: Tests
         env:
           BROWSER: ${{ matrix.browser }}
           GRID: true
           GRID_URL: selenium
           BASE_URL: http://backend
-        run: cd large_tests && rspec spec/test_basic* --format doc
+        run: cd tests/large_tests && rspec spec/test_basic* --format doc
 
   resolution-tests:
     name: Check resolutions diffs
@@ -151,7 +151,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Prepare
-        run: cd large_tests && gem install bundler && bundle install
+        run: cd tests/large_tests && gem install bundler && bundle install
       - name: Tests
         env:
           BROWSER: chrome
@@ -159,7 +159,7 @@ jobs:
           GRID_URL: selenium
           BASE_URL: http://backend
           HEADLESS: true
-        run: cd large_tests && rspec spec/test_resolutions* --format doc
+        run: cd tests/large_tests && rspec spec/test_resolutions* --format doc
       - name: artifacts
         uses: actions/upload-artifact@v3
         if: always()
