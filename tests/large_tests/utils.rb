@@ -47,6 +47,9 @@ module Utils
     case the_browser_type
     when 'chrome'
       the_chrome_options = Selenium::WebDriver::Chrome::Options.new
+      the_chrome_options.add_argument('--disable-dev-shm-usage')
+      the_chrome_options.add_argument('--no-sandbox')
+      the_chrome_options.add_argument(executable_path = '/var/lib/snapd/snap/bin/chromium')
       the_chrome_options.add_argument('--headless') if ENV['BROWSER_HEADLESS'] == 'true'
       { options: the_chrome_options }
     when 'firefox'

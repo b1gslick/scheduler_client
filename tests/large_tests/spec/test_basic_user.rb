@@ -3,8 +3,6 @@ require_relative './pages/main_page'
 require_relative './libs/driver'
 
 describe 'Basic user flow' do
-  $driver = nil
-
   before(:each) do
     Libs::Driver.new
     @application = Pages::MainPage.new
