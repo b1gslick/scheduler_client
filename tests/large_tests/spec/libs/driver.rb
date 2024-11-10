@@ -5,8 +5,6 @@ module Libs
   class Driver
     include Utils
 
-    attr_accessor :driver
-
     def initialize(driver = @driver)
       driver = if grid != 'true'
                  Selenium::WebDriver.for(browser_type, browser_options)
