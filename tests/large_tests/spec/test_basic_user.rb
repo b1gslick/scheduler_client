@@ -4,7 +4,8 @@ require_relative './libs/driver'
 
 describe 'Basic user flow' do
   before(:each) do
-    Libs::Driver.new
+    d = Libs::Driver.new
+    $driver = d.get_driver
     @application = Pages::MainPage.new
   end
 
