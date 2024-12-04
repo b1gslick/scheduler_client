@@ -1,9 +1,10 @@
 .header__container {
   text-align: center;
   margin: 0px;
-  font-size: 20px;
+  font-size: 60px;
   float: left;
   width: 49%;
+  font-family: sans-serif;
 }
 
 .timer {
@@ -12,4 +13,12 @@
   padding: 15px;
   font-size: 100px;
   margin: 0;
+}
+
+.navbar {
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
 }

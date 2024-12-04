@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+
 body {
   font-family: "Inter", sans-serif;
   text-align: center;
@@ -15,6 +17,15 @@ body {
 .column {
   float: left;
   width: 100%;
+}
+
+h1 {
+  font-size: 90px;
+  font-weight: 600;
+  color: #ffd;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  font-family: "Comic Sans", sans-serif;
 }
 
 .note::after {

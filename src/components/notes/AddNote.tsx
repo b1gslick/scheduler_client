@@ -12,7 +12,7 @@ const AddNote = (props: AddNoteProps) => {
     id: 0,
     title: "",
     description: "",
-    time: 0,
+    time: "",
   });
 
   const addNewNote = (e: any) => {
@@ -23,7 +23,7 @@ const AddNote = (props: AddNoteProps) => {
       id: Date.now(),
     };
     props.create(newNote);
-    setNote({ id: 0, title: "", description: "", time: 0 });
+    setNote({ id: 0, title: "", description: "", time: "" });
   };
   return (
     <div className="note" data-testid="add-note">

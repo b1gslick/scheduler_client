@@ -10,7 +10,7 @@
   transition: transform 0.15s linear;
 }
 
-form {
+form .form_notes {
   display: grid;
   gap: 10px;
   grid-auto-columns: auto;
@@ -23,6 +23,10 @@ form {
   color: #000;
   background: #ffc;
   font-size: 24px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  border: 0px solid gray;
 }
 
 .inputDesc {

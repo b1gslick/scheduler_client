@@ -1,6 +1,12 @@
-# Typescript + vite + react
+# Scheduler client
 
-It's predifined boilerplate, with typescript, vite and react
-also added theme support.
+it's client for scheduler server
 
-for install just clone directory, and yarn install
+## Techologies
+
+React
+Typescript
+
+## Run
+
+yarn dev
