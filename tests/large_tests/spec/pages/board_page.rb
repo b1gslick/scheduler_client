@@ -26,5 +26,10 @@ module Pages
       all_elements = @delete_button.get_all
       all_elements.length
     end
+
+    def edit_note(note_id)
+      all_elements = @edit_button.get_all
+      all_elements[note_id].click
+    end
   end
 end

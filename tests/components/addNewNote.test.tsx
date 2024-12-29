@@ -50,7 +50,7 @@ describe("Test add notes", () => {
 
   it("Press add call function for add note", async () => {
     const create = jest.fn();
-    const props: AddNoteProps = { create: create };
+    const props: AddNoteProps = { create: create, modalState: () => false };
     const { getByTestId } = renderNote(props);
     fireEvent.click(getByTestId("add-button"));
     expect(create).toHaveBeenCalled();
@@ -64,5 +64,5 @@ describe("Test add notes", () => {
 });
 
 const renderNote = ({ create }) => {
-  return render(<AddNote create={create} />);
+  return render(<AddNote create={create} modalState={() => false} />);
 };

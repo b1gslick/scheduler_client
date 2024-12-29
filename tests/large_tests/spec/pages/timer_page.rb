@@ -12,6 +12,18 @@ module Pages
       @play_button.click
     end
 
+    def get_play_button
+      @play_button
+    end
+
+    def get_pause_button
+      @pause_button
+    end
+
+    def get_finish_button
+      @finish_button
+    end
+
     def pause
       @pause_button.click
     end

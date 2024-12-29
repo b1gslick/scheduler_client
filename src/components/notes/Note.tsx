@@ -32,7 +32,11 @@ const Note = (props: NoteProps) => {
         makevisible={setEditModal}
         data-testid="edit-modal"
       >
-        <EditNote note={props} edit={props.edit}></EditNote>
+        <EditNote
+          note={props}
+          edit={props.edit}
+          modalState={setEditModal}
+        ></EditNote>
       </Modal>
       <Modal
         visible={playModal}

@@ -59,6 +59,7 @@ const renderEdit = (forChange?: any) => {
     isFinish: false,
   };
   const props: EditNoteProps = {
+    modalState: () => {},
     edit: () => {},
     note: note,
     ...forChange,

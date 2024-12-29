@@ -1,5 +1,5 @@
 export BASE_URL=http://localhost:5173
-export BROWSER_HEADLESS=true
+export BROWSER_HEADLESS=false
 export GRID=false
 export BROWSER=chrome
 
@@ -12,5 +12,10 @@ r:
 old:
 	rspec spec/test_basic_user_flow.rb
 
+one:
+	rspec spec/test_basic_user.rb -e $(text)
+
+# for example
+# make one text='edit'
 
 
