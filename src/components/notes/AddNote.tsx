@@ -5,6 +5,7 @@ import { NoteProps } from "./Note";
 
 export type AddNoteProps = {
   create: (e: NoteProps) => void;
+  modalState: (e: boolean) => void;
 };
 
 const AddNote = (props: AddNoteProps) => {
@@ -23,6 +24,7 @@ const AddNote = (props: AddNoteProps) => {
       id: Date.now(),
     };
     props.create(newNote);
+    props.modalState(false);
     setNote({ id: 0, title: "", description: "", time: "" });
   };
   return (
