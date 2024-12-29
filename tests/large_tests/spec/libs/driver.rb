@@ -14,7 +14,7 @@ module Libs
 
                     else
                       Selenium::WebDriver.for(:remote, url: grid_url, http_client: http_client,
-                                                       options: browser_options[:options])
+                                                       options: bo[:options])
                     end
       driver.manage.window.resize_to(width, height)
       driver.get(site_url)
@@ -31,7 +31,7 @@ module Libs
         the_chrome_options = Selenium::WebDriver::Chrome::Options.new
         the_chrome_options.add_argument('--disable-dev-shm-usage')
         the_chrome_options.add_argument('--no-sandbox')
-        the_chrome_options.add_argument(executable_path = '/var/lib/snapd/snap/bin/chromium')
+        the_chrome_options.add_argument('/var/lib/snapd/snap/bin/chromium')
         the_chrome_options.add_argument('--headless') if ENV['BROWSER_HEADLESS'] == 'true'
         the_chrome_options.add_emulation(device_name: device) if device
         { options: the_chrome_options }
