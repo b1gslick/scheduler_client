@@ -42,18 +42,6 @@ module Utils
     raise "Timeeout after #{duration.to_i} seconds"
   end
 
-  def add_note(index, minutes)
-    driver.find_element(:css, 'button[data-testid="add-note-button"]').click
-    expect(driver.find_element(:css, 'div[data-testid="add-note"]').displayed?).to eql(true)
-    driver.find_element(:css, '.inputTitle').send_keys("test#{index}")
-    driver.find_element(:css, '.inputDesc').send_keys("test#{index}")
-    time = driver.find_element(:css, '.inputTime')
-    time.clear
-    time.send_keys(minutes)
-    driver.find_element(:css, 'button[data-testid="add-button"]').click
-    try_for(1) { driver.find_element(:css, 'html').click }
-  end
-
   def compare_screenshots(orignal, current)
     one = ChunkyPNG::Image.from_file(orignal)
     two = ChunkyPNG::Image.from_file(current)

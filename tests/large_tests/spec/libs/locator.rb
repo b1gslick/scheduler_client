@@ -30,5 +30,13 @@ module Libs
       elem.click
       elem.clear
     end
+
+    def get_text(driver = $driver)
+      driver.find_element(which, what).text
+    end
+
+    def get_all(driver = $driver)
+      driver.find_elements(which, what)
+    end
   end
 end

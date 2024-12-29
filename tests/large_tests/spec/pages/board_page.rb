@@ -12,8 +12,19 @@ module Pages
       @add_note_button.click
     end
 
-    def press_first_note_timer
-      @timer_button.click
+    def press_note_timer(note_id)
+      all_elements = @timer_button.get_all
+      all_elements[note_id].click
+    end
+
+    def delete_note(note_id)
+      all_elements = @delete_button.get_all
+      all_elements[note_id].click
+    end
+
+    def all_note_length
+      all_elements = @delete_button.get_all
+      all_elements.length
     end
   end
 end

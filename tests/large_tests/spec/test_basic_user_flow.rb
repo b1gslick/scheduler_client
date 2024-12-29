@@ -1,5 +1,5 @@
 require 'selenium-webdriver'
-require_relative '../utils'
+require_relative 'libs/utils'
 
 describe 'Basic user flow' do
   include Utils

@@ -1,5 +1,5 @@
 # Configure the selenium driver
-require_relative '../../utils'
+require_relative 'utils'
 
 module Libs
   class Driver
@@ -7,9 +7,11 @@ module Libs
 
     attr_accessor :driver
 
-    def initialize(width = 1920, height = 1024)
+    def initialize(device = nil, width = 1920, height = 1024)
+      bo = browser_options(device)
       self.driver = if grid != 'true'
-                      Selenium::WebDriver.for(browser_type, browser_options)
+                      Selenium::WebDriver.for(browser_type, bo)
+
                     else
                       Selenium::WebDriver.for(:remote, url: grid_url, http_client: http_client,
                                                        options: browser_options[:options])
@@ -22,7 +24,7 @@ module Libs
       driver
     end
 
-    def browser_options
+    def browser_options(device)
       the_browser_type = browser_type.to_s
       case the_browser_type
       when 'chrome'
@@ -31,6 +33,7 @@ module Libs
         the_chrome_options.add_argument('--no-sandbox')
         the_chrome_options.add_argument(executable_path = '/var/lib/snapd/snap/bin/chromium')
         the_chrome_options.add_argument('--headless') if ENV['BROWSER_HEADLESS'] == 'true'
+        the_chrome_options.add_emulation(device_name: device) if device
         { options: the_chrome_options }
       when 'firefox'
         the_firefox_options = Selenium::WebDriver::Firefox::Options.new
