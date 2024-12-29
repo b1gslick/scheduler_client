@@ -29,9 +29,9 @@ services:
     environment:
       GRID: true
       GRID_URL: chrome
-      BASE_URL: http://backend
+      BASE_URL: http://frontend
 
-  backend:
+  frontend:
     build:
       context: ../
       target: final
