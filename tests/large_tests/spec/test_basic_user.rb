@@ -34,6 +34,7 @@ describe 'Basic user flow' do
     @timer.pause
     try_for(2) { expect(@timer.get_seconds).to eql(seconds_before) }
     @timer.close
+    @timer.close
     notes_before = @board_page.all_note_length
     @board_page.delete_note(0)
     expect(@board_page.all_note_length).to eql(notes_before - 1)
@@ -45,9 +46,10 @@ describe 'Basic user flow' do
     @board_page.press_note_timer(0)
     @timer.play
     try_for(2) { expect(@timer.get_seconds).to eql('00') }
-    not_visible(1) { expect(@timer.get_finish_button.is_displayed).to eql?(true) }
-    not_visible(1) { expect(@timer.get_play_button.is_displayed).to eql?(false) }
-    not_visible(1) { expect(@timer.get_pause_button.is_displayed).to eql?(false) }
+    not_visible(1) { expect(@timer.get_finish_button.is_displayed).to eql(true) }
+    @timer.finish
+    not_visible(1) { expect(@timer.get_play_button.is_displayed).to eql(false) }
+    not_visible(1) { expect(@timer.get_pause_button.is_displayed).to eql(false) }
   end
 
   it 'User can add new note, play timer and mark it as finish, timer should stop' do
@@ -61,8 +63,8 @@ describe 'Basic user flow' do
     seconds_before = @timer.get_seconds
     @timer.play
     @timer.finish
-    not_visible(1) { expect(@timer.get_play_button.is_displayed).to eql?(false) }
-    not_visible(1) { expect(@timer.get_pause_button.is_displayed).to eql?(false) }
+    not_visible(1) { expect(@timer.get_play_button.is_displayed).to eql(false) }
+    not_visible(1) { expect(@timer.get_pause_button.is_displayed).to eql(false) }
     try_for(2) { expect(@timer.get_seconds).to eql(seconds_before) }
   end
 

@@ -19,7 +19,7 @@ const Timer = (props: timerProps) => {
 
   useEffect(() => {
     let timer: any = null;
-    if (isPlay) {
+    if (isPlay && time > 0) {
       timer = setInterval(() => {
         setTime((time: number) => time - 1);
       }, 1000);
@@ -28,9 +28,10 @@ const Timer = (props: timerProps) => {
       clearInterval(timer);
     };
   });
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = Math.floor(time % 60);
+
+  const hours = Math.max(Math.floor(time / 3600), 0);
+  const minutes = Math.max(Math.floor((time % 3600) / 60), 0);
+  const seconds = Math.max(Math.floor(time % 60), 0);
 
   return (
     <div className="timerContainer" data-testid="timer-container">
@@ -86,7 +87,10 @@ const Timer = (props: timerProps) => {
           id="timer-button-finish"
           aria-label="finish"
           icon={faCheckCircle}
-          onClick={() => setFinish(true)}
+          onClick={() => {
+            setFinish(true);
+            setPlay(false);
+          }}
         />
       </div>
     </div>
