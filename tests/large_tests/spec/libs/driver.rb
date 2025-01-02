@@ -40,7 +40,7 @@ module Libs
       when 'firefox'
         the_firefox_options = Selenium::WebDriver::Firefox::Options.new
         the_firefox_options.add_argument('--headless') if ENV['BROWSER_HEADLESS'] == 'true'
-        the__options.add_argument('--ignore-certificate-errors')
+        the_firefox_options.add_argument('--ignore-certificate-errors')
         { options: the_firefox_options }
       when the_browser_type == 'edge'
         the_edge_options = Selenium::WebDriver::Edge::Options.new
