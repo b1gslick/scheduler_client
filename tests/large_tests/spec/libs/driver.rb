@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Configure the selenium driver
 require_relative 'utils'
 
@@ -31,13 +33,14 @@ module Libs
         the_chrome_options = Selenium::WebDriver::Chrome::Options.new
         the_chrome_options.add_argument('--disable-dev-shm-usage')
         the_chrome_options.add_argument('--no-sandbox')
-        the_chrome_options.add_argument('/var/lib/snapd/snap/bin/chromium')
+        the_chrome_options.add_argument('--ignore-certificate-errors')
         the_chrome_options.add_argument('--headless') if ENV['BROWSER_HEADLESS'] == 'true'
         the_chrome_options.add_emulation(device_name: device) if device
         { options: the_chrome_options }
       when 'firefox'
         the_firefox_options = Selenium::WebDriver::Firefox::Options.new
         the_firefox_options.add_argument('--headless') if ENV['BROWSER_HEADLESS'] == 'true'
+        the__options.add_argument('--ignore-certificate-errors')
         { options: the_firefox_options }
       when the_browser_type == 'edge'
         the_edge_options = Selenium::WebDriver::Edge::Options.new

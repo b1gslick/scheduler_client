@@ -43,14 +43,14 @@ const Timer = (props: timerProps) => {
             </span>
             <div className="clock-text">hours</div>
           </li>
-          <li className="doubleColomn">:</li>
+          {/* <li className="doubleColomn">:</li> */}
           <li>
             <span id="minutes" data-testid="timer-minutes">
               {minutes < 10 ? "0" + minutes : minutes}
             </span>
             <div className="clock-text">minutes</div>
           </li>
-          <li className="doubleColomn">:</li>
+          {/* <li className="doubleColomn">:</li> */}
           <li>
             <span id="seconds" data-testid="timer-seconds">
               {seconds < 10 ? "0" + seconds : seconds}
