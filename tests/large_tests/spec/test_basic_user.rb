@@ -19,7 +19,7 @@ describe 'Basic user flow' do
   end
 
   after(:each) do
-    $driver.close
+    $driver.quit
   end
 
   it 'User can add several note, play and stop timer, then delete note' do

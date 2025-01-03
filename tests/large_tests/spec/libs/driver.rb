@@ -7,7 +7,7 @@ module Libs
   class Driver
     include Utils
 
-    attr_accessor :driver
+    attr_accessor :driver, :client
 
     def initialize(device = nil, width = 1920, height = 1024)
       bo = browser_options(device)
@@ -15,7 +15,8 @@ module Libs
                       Selenium::WebDriver.for(browser_type, bo)
 
                     else
-                      Selenium::WebDriver.for(:remote, url: grid_url, http_client: http_client,
+                      @client = http_client
+                      Selenium::WebDriver.for(:remote, url: grid_url, http_client: @client,
                                                        options: bo[:options])
                     end
       driver.manage.window.resize_to(width, height)
@@ -56,8 +57,15 @@ module Libs
       return unless ENV['GRID']
 
       client = Selenium::WebDriver::Remote::Http::Default.new
-      client.read_timeout = 600 # seconds
+      client.read_timeout = 60 # seconds
       client
+    end
+
+    def stop
+      driver.close
+      return unless ENV['GRID'] == true
+
+      @client.close
     end
 
     def grid

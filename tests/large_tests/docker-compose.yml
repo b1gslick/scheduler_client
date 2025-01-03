@@ -1,13 +1,13 @@
 services:
   chrome:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome:131.0
     shm_size: "2gb"
     ports:
       - 4444:4444 # Selenium service
       - 5900:5900 # VNC server
       - 7900:7900 # VNC browser client
   firefox:
-    image: selenium/standalone-firefox
+    image: selenium/standalone-firefox:133.0
     shm_size: "2gb"
     ports:
       - 4445:4444 # Selenium service
@@ -27,7 +27,7 @@ services:
 
   frontend:
     build:
-      context: ../
+      context: ../../
       target: final
       dockerfile: Dockerfile
     ports:
