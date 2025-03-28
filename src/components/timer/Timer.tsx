@@ -7,30 +7,45 @@ import {
   faPlayCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import NoteButton from "../UI/NoteButton";
+import { useTimer } from "../../hooks/timer_state";
 
 type timerProps = {
   note: NoteProps;
 };
 
 const Timer = (props: timerProps) => {
-  const [time, setTime] = useState(props.note.time * 60);
+  let { time, setTimer } = useTimer();
   const [isPlay, setPlay] = useState(false);
   const [isFinish, setFinish] = useState(props.note.isFinish);
 
+  const editNote = () => {
+    const note = {
+      ...props.note,
+      time: Math.max(Math.floor((time % 3600) / 60), 0),
+    };
+    props.note.edit(note);
+  };
+
+  const changeTime = () => {
+    time--;
+    setTimer(time);
+  };
+
   useEffect(() => {
     let timer: any = null;
-    if (isPlay) {
+    if (isPlay && time > 0) {
       timer = setInterval(() => {
-        setTime((time: number) => time - 1);
+        changeTime();
       }, 1000);
     }
     return () => {
       clearInterval(timer);
     };
   });
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = Math.floor(time % 60);
+
+  const hours = Math.max(Math.floor(time / 3600), 0);
+  const minutes = Math.max(Math.floor((time % 3600) / 60), 0);
+  const seconds = Math.max(Math.floor(time % 60), 0);
 
   return (
     <div className="timerContainer" data-testid="timer-container">
@@ -42,14 +57,14 @@ const Timer = (props: timerProps) => {
             </span>
             <div className="clock-text">hours</div>
           </li>
-          <li className="doubleColomn">:</li>
+          {/* <li className="doubleColomn">:</li> */}
           <li>
             <span id="minutes" data-testid="timer-minutes">
               {minutes < 10 ? "0" + minutes : minutes}
             </span>
             <div className="clock-text">minutes</div>
           </li>
-          <li className="doubleColomn">:</li>
+          {/* <li className="doubleColomn">:</li> */}
           <li>
             <span id="seconds" data-testid="timer-seconds">
               {seconds < 10 ? "0" + seconds : seconds}
@@ -67,7 +82,10 @@ const Timer = (props: timerProps) => {
             aria-label="pause"
             id="timer-button-pause"
             icon={faPauseCircle}
-            onClick={() => setPlay(false)}
+            onClick={() => {
+              editNote();
+              setPlay(false);
+            }}
           />
         ) : (
           <NoteButton
@@ -86,7 +104,11 @@ const Timer = (props: timerProps) => {
           id="timer-button-finish"
           aria-label="finish"
           icon={faCheckCircle}
-          onClick={() => setFinish(true)}
+          onClick={() => {
+            editNote();
+            setFinish(true);
+            setPlay(false);
+          }}
         />
       </div>
     </div>

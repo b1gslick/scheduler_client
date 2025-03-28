@@ -5,6 +5,7 @@ import InputForm, {
 
 import { MemoryRouter } from "react-router-dom";
 import { axe } from "jest-axe";
+import { TimerProvider } from "../../src/context";
 
 describe("Test input form", () => {
   test("input form should render with button name and datatest id", async () => {
@@ -63,8 +64,11 @@ const renderLoginForm = (forChange?: any) => {
     ...forChange,
   };
   return render(
-    <MemoryRouter initialEntries={[{ pathname: "/" }]}>
-      <InputForm {...inputProps}></InputForm>
-    </MemoryRouter>,
+    <TimerProvider>
+      <MemoryRouter initialEntries={[{ pathname: "/" }]}>
+        <InputForm {...inputProps}></InputForm>
+      </MemoryRouter>
+      ,
+    </TimerProvider>,
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppButton from "../UI/AppButton";
 import { NoteProps } from "./Note";
 import "./Note.css";
@@ -6,12 +6,18 @@ import "./Note.css";
 export type EditNoteProps = {
   edit: (e: NoteProps) => {};
   note: NoteProps;
+  modalState: (e: boolean) => void;
 };
 
 const EditNote = (props: EditNoteProps) => {
   const [title, setEditTitle] = useState(props.note.title);
   const [description, setEditDescription] = useState(props.note.description);
   const [time, setEditTime] = useState(props.note.time);
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   const editNote = (e: any) => {
     e.preventDefault();
     const note = {
@@ -21,7 +27,9 @@ const EditNote = (props: EditNoteProps) => {
       time: time,
     };
     props.edit(note);
+    props.modalState(false);
   };
+
   return (
     <div className="note" data-testid="edit-note">
       <form>

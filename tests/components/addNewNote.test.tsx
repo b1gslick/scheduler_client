@@ -1,6 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import AddNote, { AddNoteProps } from "../../src/components/notes/AddNote";
 import { axe } from "jest-axe";
+import { TimerProvider } from "../../src/context";
 
 describe("Test add notes", () => {
   it("Add note render with empty fields", async () => {
@@ -50,7 +51,7 @@ describe("Test add notes", () => {
 
   it("Press add call function for add note", async () => {
     const create = jest.fn();
-    const props: AddNoteProps = { create: create };
+    const props: AddNoteProps = { create: create, modalState: () => false };
     const { getByTestId } = renderNote(props);
     fireEvent.click(getByTestId("add-button"));
     expect(create).toHaveBeenCalled();
@@ -64,5 +65,9 @@ describe("Test add notes", () => {
 });
 
 const renderNote = ({ create }) => {
-  return render(<AddNote create={create} />);
+  return render(
+    <TimerProvider>
+      <AddNote create={create} modalState={() => false} />
+    </TimerProvider>,
+  );
 };

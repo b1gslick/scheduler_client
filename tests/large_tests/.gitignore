@@ -1,0 +1,5 @@
+rspec.xml
+diff*.png
+bin/
+.ruby-lsp
+.bundle

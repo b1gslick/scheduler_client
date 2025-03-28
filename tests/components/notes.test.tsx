@@ -1,6 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import { axe } from "jest-axe";
 import Note, { NoteProps } from "../../src/components/notes/Note";
+import { TimerProvider } from "../../src/context";
 
 describe("Test notes", () => {
   it("simple render notes", async () => {
@@ -29,7 +30,7 @@ describe("Test notes", () => {
       expected: "edit-modal",
     },
   ])(
-    "$$nameButton button call modal window with $$expected",
+    "$nameButton button call modal window with $expected",
     async ({ nameButton, expected }) => {
       const { getByTestId } = renderNote();
       const modal = getByTestId(expected);
@@ -40,7 +41,7 @@ describe("Test notes", () => {
     },
   );
 
-  it("delete button delete element from DOM", async () => {
+  it("delete button delete element from the DOM", async () => {
     const remove = jest.fn();
     const { getByTestId } = renderNote({ remove: remove });
     fireEvent.click(getByTestId("note-delete-button"));
@@ -62,5 +63,9 @@ const renderNote = (props?: any) => {
     time: 10,
     isFinish: false,
   };
-  return render(<Note {...note} />);
+  return render(
+    <TimerProvider>
+      <Note {...note} />
+    </TimerProvider>,
+  );
 };

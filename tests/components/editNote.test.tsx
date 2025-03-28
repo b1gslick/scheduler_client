@@ -2,6 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { axe } from "jest-axe";
 import EditNote, { EditNoteProps } from "../../src/components/notes/EditNote";
 import { NoteProps } from "../../src/components/notes/Note";
+import { TimerProvider } from "../../src/context";
 
 describe("Edit note tests", () => {
   type testEdit = {
@@ -33,7 +34,7 @@ describe("Edit note tests", () => {
       expect(edit).toHaveBeenCalled();
     },
   );
-  it("Can edit description, expect in the fiels new value", async () => {
+  it("Can edit description, expect in the fields new value", async () => {
     const edit = jest.fn();
     const { getByTestId } = renderEdit({ edit: edit });
     fireEvent.change(getByTestId("edit-descr"), {
@@ -59,9 +60,14 @@ const renderEdit = (forChange?: any) => {
     isFinish: false,
   };
   const props: EditNoteProps = {
+    modalState: () => {},
     edit: () => {},
     note: note,
     ...forChange,
   };
-  return render(<EditNote {...props} />);
+  return render(
+    <TimerProvider>
+      <EditNote {...props} />
+    </TimerProvider>,
+  );
 };

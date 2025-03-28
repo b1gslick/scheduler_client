@@ -2,6 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { axe } from "jest-axe";
 import Timer from "../../src/components/timer/Timer";
 import { NoteProps } from "../../src/components/notes/Note";
+import { TimerContext } from "../../src/context";
 
 jest.spyOn(global, "setTimeout");
 describe("Test timer", () => {
@@ -86,7 +87,12 @@ const renderTimer = (props?: any) => {
     description: "testshorttext",
     time: 10,
     isFinish: false,
+    edit: () => {},
     ...props,
   };
-  return render(<Timer note={note} />);
+  return render(
+    <TimerContext.Provider value={{ time: note.time * 60, setTimer: () => {} }}>
+      <Timer note={note} />
+    </TimerContext.Provider>,
+  );
 };
