@@ -22,6 +22,7 @@ const InputForm = (props: InputFromProps) => {
           name="uname"
           data-testid="login_username"
           aria-placeholder="Email"
+          min="3"
         ></input>
         <FontAwesomeIcon className="form_pass" icon={faLock}></FontAwesomeIcon>
         <input
@@ -30,6 +31,7 @@ const InputForm = (props: InputFromProps) => {
           placeholder="Enter password"
           name="psw"
           data-testid="login_password"
+          min="6"
         ></input>
         {location.pathname === "/registration" ? (
           <input
@@ -38,6 +40,7 @@ const InputForm = (props: InputFromProps) => {
             placeholder="Enter Confirm Password"
             name="confirm"
             data-testid="login_confirm"
+            min="6"
           ></input>
         ) : (
           <></>

@@ -1,21 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NoteProps } from "../components/notes/Note";
 import Modal from "../components/UI/Modal";
 import AddNote from "../components/notes/AddNote";
 import NotesLists from "../components/notes_list/NotesLists";
 import AddNoteButton from "../components/UI/AddNoteButton";
+import { useActivityService } from "../services/useActivityService";
+import { useAuth } from "../hooks/auth";
+import AppButton from "../components/UI/AppButton";
+import Message from "../components/UI/Message";
 
 const NotesPage = () => {
   let note: NoteProps[] = [];
+  const { getAllNotes, addNotes, delteNote, editNotes } = useActivityService();
+  const auth = useAuth();
   const [notes, setRows] = useState(note);
   const [modal, setModal] = useState(false);
+  const [message, setMessage] = useState({ type: "", text: "" });
+
+  useEffect(() => {
+    getAllNotes().then((activities: Array<NoteProps>) => setRows(activities));
+  }, []);
 
   const createRow = (newPost: NoteProps) => {
-    setRows([...notes, newPost]);
+    addNotes(newPost).then((answer) => {
+      // @ts-ignore
+      if (answer.errorMsg) {
+        // @ts-ignore
+        setMessage({ type: "error", text: answer.errorMsg });
+      }
+      getAllNotes().then((activities: Array<NoteProps>) => setRows(activities));
+    });
   };
 
   const removeRow = (note: NoteProps) => {
-    setRows(notes.filter((n) => n.id !== note.id));
+    //@ts-ignore
+    delteNote(note.id);
+    getAllNotes().then((activities: Array<NoteProps>) => setRows(activities));
   };
 
   const editRow = (note: NoteProps) => {
@@ -28,12 +48,17 @@ const NotesPage = () => {
     setRows([...newNotes]);
   };
 
+  const handleLogout = () => {
+    auth?.logout();
+  };
+
   const setVisibleAddNote = (visible: boolean) => {
     setModal(visible);
   };
 
   return (
     <div className="container">
+      <AppButton onClick={handleLogout}>Logout</AppButton>
       <div className="column">
         <Modal visible={modal} makevisible={setModal} data-testid="add-modal">
           <AddNote create={createRow} modalState={setVisibleAddNote} />
@@ -42,6 +67,9 @@ const NotesPage = () => {
           <AddNoteButton onClick={() => setVisibleAddNote(true)} />
         </NotesLists>
       </div>
+      {message.text ? (
+        <Message type={message.type as any} text={message.text} />
+      ) : null}
     </div>
   );
 };

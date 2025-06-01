@@ -26,6 +26,7 @@ declare module "*svg" {
 declare const __PLATFORM__: "mobile" | "desktop";
 
 export type AuthContextType = {
-  isAuth: boolean;
-  setIsAuth: (isAuth: boolean) => void;
+  cookies: { [x: string]: any };
+  auth: ({ email, password }: { email: any; password: any }) => Promise<void>;
+  logout: () => void;
 };

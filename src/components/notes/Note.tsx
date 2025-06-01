@@ -13,11 +13,11 @@ import { convertMinsToHrsMins } from "../../utils/helper";
 import { useTimer } from "../../hooks/timer_state";
 
 export type NoteProps = {
-  id: number;
+  id?: number;
   title: string;
-  description: string;
-  isFinish: boolean;
-  time: any;
+  content: string;
+  isFinish?: boolean;
+  time: number;
   remove?: any;
   edit?: any;
 };

@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { AuthContext } from "../context";
-
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks/auth";
 
 const PrivateRoutes = () => {
-  const isAuth = useContext(AuthContext)?.isAuth;
-  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+  // @ts-ignore
+  const { cookies } = useAuth();
+  return cookies.token ? <Outlet /> : <Navigate to="/login" />;
 };
 export default PrivateRoutes;

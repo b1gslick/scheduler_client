@@ -12,8 +12,8 @@ const AddNote = (props: AddNoteProps) => {
   const [note, setNote] = useState({
     id: 0,
     title: "",
-    description: "",
-    time: "",
+    content: "",
+    time: 0,
   });
 
   const addNewNote = (e: any) => {
@@ -23,9 +23,10 @@ const AddNote = (props: AddNoteProps) => {
       isFinish: false,
       id: Date.now(),
     };
+    console.log(newNote);
     props.create(newNote);
     props.modalState(false);
-    setNote({ id: 0, title: "", description: "", time: "" });
+    setNote({ id: 0, title: "", content: "", time: 0 });
   };
   return (
     <div className="note" data-testid="add-note">
@@ -43,11 +44,9 @@ const AddNote = (props: AddNoteProps) => {
         <label htmlFor="description"></label>
         <textarea
           name="description"
-          value={note.description}
+          value={note.content}
           data-testid="input-descr"
-          onChange={(e: any) =>
-            setNote({ ...note, description: e.target.value })
-          }
+          onChange={(e: any) => setNote({ ...note, content: e.target.value })}
           className="inputDesc"
           placeholder="Description about activities"
         ></textarea>

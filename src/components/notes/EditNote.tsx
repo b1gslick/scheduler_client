@@ -11,7 +11,7 @@ export type EditNoteProps = {
 
 const EditNote = (props: EditNoteProps) => {
   const [title, setEditTitle] = useState(props.note.title);
-  const [description, setEditDescription] = useState(props.note.description);
+  const [description, setEditDescription] = useState(props.note.content);
   const [time, setEditTime] = useState(props.note.time);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const EditNote = (props: EditNoteProps) => {
     const note = {
       ...props.note,
       title: title,
-      description: description,
+      content: description,
       time: time,
     };
     props.edit(note);
