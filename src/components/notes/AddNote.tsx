@@ -20,6 +20,7 @@ const AddNote = (props: AddNoteProps) => {
     e.preventDefault();
     const newNote = {
       ...note,
+      time: Number(note.time),
       isFinish: false,
       id: Date.now(),
     };

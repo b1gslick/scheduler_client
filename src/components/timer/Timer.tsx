@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import NoteButton from "../UI/NoteButton";
 import { useTimer } from "../../hooks/timer_state";
+import { useTimeSpentService } from "../../services/useTimeSpentService";
 
 type timerProps = {
   note: NoteProps;
@@ -17,8 +18,14 @@ const Timer = (props: timerProps) => {
   let { time, setTimer } = useTimer();
   const [isPlay, setPlay] = useState(false);
   const [isFinish, setFinish] = useState(props.note.isFinish);
+  const { addTimeSpent } = useTimeSpentService();
 
   const editNote = () => {
+    addTimeSpent({
+      //@ts-ignore
+      activity_id: props.note.id,
+      time: props.note.time * 60 - time,
+    });
     const note = {
       ...props.note,
       time: Math.max(Math.floor((time % 3600) / 60), 0),

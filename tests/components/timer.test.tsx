@@ -3,9 +3,13 @@ import { axe } from "jest-axe";
 import Timer from "../../src/components/timer/Timer";
 import { NoteProps } from "../../src/components/notes/Note";
 import { TimerContext } from "../../src/context";
+import { mockFetch } from "../utils/mockFetch";
 
 jest.spyOn(global, "setTimeout");
+
 describe("Test timer", () => {
+  const mockFetchResponse = [{}];
+  window.fetch = mockFetch(mockFetchResponse);
   it("timer render time", async () => {
     const { getByTestId } = renderTimer({ time: 121 });
     const hour = getByTestId("timer-hours");

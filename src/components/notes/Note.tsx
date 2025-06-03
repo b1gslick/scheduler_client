@@ -65,7 +65,7 @@ const Note = (props: NoteProps) => {
             data-testid="note-desc"
             suppressContentEditableWarning={true}
           >
-            {props.description}
+            {props.content}
           </p>
         </form>
         <form className="time form_notes">

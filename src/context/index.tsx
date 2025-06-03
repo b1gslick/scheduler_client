@@ -1,5 +1,4 @@
 import { useState, createContext } from "react";
-import { AuthContextType } from "../global";
 
 interface Props {
   children: React.ReactNode;

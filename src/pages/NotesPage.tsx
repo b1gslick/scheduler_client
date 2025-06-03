@@ -33,12 +33,14 @@ const NotesPage = () => {
   };
 
   const removeRow = (note: NoteProps) => {
-    //@ts-ignore
+    // @ts-ignore
     delteNote(note.id);
-    getAllNotes().then((activities: Array<NoteProps>) => setRows(activities));
+    setRows(notes.filter((n) => n.id !== note.id));
   };
 
   const editRow = (note: NoteProps) => {
+    // @ts-ignore
+    editNotes(note.id, note);
     let newNotes: NoteProps[] = notes.map((r: NoteProps) => {
       if (r.id === note.id) {
         return note;

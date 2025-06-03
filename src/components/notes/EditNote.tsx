@@ -24,7 +24,7 @@ const EditNote = (props: EditNoteProps) => {
       ...props.note,
       title: title,
       content: description,
-      time: time,
+      time: Number(time),
     };
     props.edit(note);
     props.modalState(false);
