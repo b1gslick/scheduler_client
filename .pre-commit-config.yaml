@@ -1,21 +1,21 @@
 repos:
   - repo: local
     hooks:
+      - id: typecheck
+        name: typecheck
+        description: check code style
+        entry: yarn typecheck
+        language: system
+        pass_filenames: false
       - id: lint
         name: lint
         description: check code style
         entry: yarn lint
         language: system
         pass_filenames: false
-      - id: lint
-        name: lint
-        description: check code style
-        entry: yarn typecheck
-        language: system
-        pass_filenames: false
       - id: test
         name: test
         description: run test before commit
         language: system
-        entry: pnpm run test
+        entry: yarn test
         pass_filenames: false
