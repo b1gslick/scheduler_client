@@ -4,7 +4,13 @@ repos:
       - id: lint
         name: lint
         description: check code style
-        entry: pnpm lint
+        entry: yarn lint
+        language: system
+        pass_filenames: false
+      - id: lint
+        name: lint
+        description: check code style
+        entry: yarn typecheck
         language: system
         pass_filenames: false
       - id: test

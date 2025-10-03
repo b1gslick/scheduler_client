@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NoteButton from "../UI/NoteButton";
 import "./NoteStyles.css";
 import {

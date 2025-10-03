@@ -20,19 +20,6 @@ const Timer = (props: timerProps) => {
   const [isFinish, setFinish] = useState(props.note.isFinish);
   const { start, stop } = useTimerService();
 
-  const editNote = () => {
-    addTimeSpent({
-      //@ts-ignore
-      activity_id: props.note.id,
-      time: props.note.time * 60 - time,
-    });
-    const note = {
-      ...props.note,
-      time: Math.max(Math.floor((time % 3600) / 60), 0),
-    };
-    props.note.edit(note);
-  };
-
   const changeTime = () => {
     time--;
     setTimer(time);
