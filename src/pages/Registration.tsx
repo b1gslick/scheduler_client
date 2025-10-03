@@ -27,13 +27,15 @@ const Registration = () => {
 
     if (psw.length < 8) {
       setMessage({ type: "error", text: "Password to short" });
+      return;
     }
 
     if (psw !== confirm) {
       setMessage({
         type: "error",
-        text: "Password and configramtion are not equals",
+        text: "Password and confirmation are not equals",
       });
+      return;
     }
 
     const props: RegistrationForm = {
@@ -47,9 +49,10 @@ const Registration = () => {
       if (message.status === "Account created") {
         // @ts-ignore
         setMessage({ type: "success", text: message.status });
-        setTimeout(() => navigate("/login"), 5000);
+        setTimeout(() => navigate("/login"), 3000);
+      } else {
+        setMessage({ type: "error", text: message.toString() });
       }
-      setMessage({ type: "error", text: message.toString() });
     });
   };
   const props: InputFromProps = {

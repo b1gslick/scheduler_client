@@ -1,4 +1,3 @@
-import { EditNoteProps } from "../components/notes/EditNote";
 import { NoteProps } from "../components/notes/Note";
 import { useAuth } from "../hooks/auth";
 import { CustomRequestProps, useHttpClient } from "./useHttpClient";
@@ -20,10 +19,7 @@ export const useActivityService = () => {
     return post<NoteProps>(request);
   };
 
-  const editNotes = async (
-    id: number,
-    body: EditNoteProps,
-  ): Promise<NoteProps> => {
+  const editNotes = async (id: number, body: NoteProps): Promise<NoteProps> => {
     const request: CustomRequestProps = {
       body,
       endpoint: `/${id}`,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AppButton from "../UI/AppButton";
 import { NoteProps } from "./Note";
 import "./Note.css";
@@ -14,11 +14,7 @@ const EditNote = (props: EditNoteProps) => {
   const [description, setEditDescription] = useState(props.note.content);
   const [time, setEditTime] = useState(props.note.time);
 
-  useEffect(() => {
-    return () => {};
-  }, []);
-
-  const editNote = (e: any) => {
+  const editNote = async (e: any) => {
     e.preventDefault();
     const note = {
       ...props.note,

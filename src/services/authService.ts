@@ -14,7 +14,6 @@ export const useAutchService = () => {
   };
 
   const login = async (body: LoginForm): Promise<string> => {
-    console.log(body);
     const request: CustomRequestProps = {
       body,
       endpoint: "login",

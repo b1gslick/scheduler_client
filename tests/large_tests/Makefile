@@ -14,6 +14,9 @@ r:
 one:
 	rspec spec/test_basic_user.rb -e $(text)
 
+all:
+	rspec spec/*
+
 # for example
 # make one text='edit'
 

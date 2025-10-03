@@ -13,7 +13,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         target:
-          (process.env.REACT_APP_BACKEND_URL as string) ??
+          (process.env.PROXY_BACKEND_ROUTE as string) ??
           "http://localhost:8080",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),

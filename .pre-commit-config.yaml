@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: lint
+        name: lint
+        description: check code style
+        entry: pnpm lint
+        language: system
+        pass_filenames: false
+      - id: test
+        name: test
+        description: run test before commit
+        language: system
+        entry: pnpm run test
+        pass_filenames: false

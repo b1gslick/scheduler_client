@@ -27,10 +27,6 @@ const Note = (props: NoteProps) => {
   const [editModal, setEditModal] = useState(false);
   const [playModal, setTimerModal] = useState(false);
 
-  useEffect(() => {
-    return () => {};
-  }, []);
-
   return (
     <div>
       <Modal
@@ -69,14 +65,16 @@ const Note = (props: NoteProps) => {
           </p>
         </form>
         <form className="time form_notes">
-          <p data-testid="note-timebox">{convertMinsToHrsMins(props.time)}</p>
+          <p data-testid="note-timebox">
+            {convertMinsToHrsMins(props.time / 60)}
+          </p>
         </form>
         <div className="button_container">
           <NoteButton
             aria-label="play button"
             icon={faPlayCircle}
             onClick={() => {
-              setTimer(props.time * 60);
+              setTimer(props.time);
               setTimerModal(true);
             }}
             data-testid="note-play-button"

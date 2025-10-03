@@ -65,6 +65,8 @@ module Utils
         next
       end
     end
+    return 0.0 if diff.empty?
+
     diff_percent = (diff.inject { |sum, value| sum + value } / one.pixels.length) * 100
 
     puts "pixels (total):     #{two.pixels.length}"
@@ -74,5 +76,9 @@ module Utils
     output.save("./spec/screenshots/diff_#{current}") if diff_percent > threshold
 
     diff_percent
+  end
+
+  def generate_random_string(len = 14)
+    ('a'..'z').to_a.sample(len).join
   end
 end

@@ -20,7 +20,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [message, setMessage] = useState({ type: "", text: "" });
 
   const auth = async ({ email, password }) => {
-    console.log(email, password);
     const res = await login({ email: email, password });
     // @ts-ignore
     if (res.token) {

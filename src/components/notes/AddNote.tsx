@@ -24,7 +24,6 @@ const AddNote = (props: AddNoteProps) => {
       isFinish: false,
       id: Date.now(),
     };
-    console.log(newNote);
     props.create(newNote);
     props.modalState(false);
     setNote({ id: 0, title: "", content: "", time: 0 });

@@ -21,15 +21,15 @@ const NotesPage = () => {
     getAllNotes().then((activities: Array<NoteProps>) => setRows(activities));
   }, []);
 
-  const createRow = (newPost: NoteProps) => {
-    addNotes(newPost).then((answer) => {
+  const createRow = async (newPost: NoteProps) => {
+    const noteAdded = await addNotes(newPost);
+    // @ts-ignore
+    if (noteAdded.errorMsg) {
       // @ts-ignore
-      if (answer.errorMsg) {
-        // @ts-ignore
-        setMessage({ type: "error", text: answer.errorMsg });
-      }
-      getAllNotes().then((activities: Array<NoteProps>) => setRows(activities));
-    });
+      setMessage({ type: "error", text: answer.errorMsg });
+    }
+    const new_activities = await getAllNotes();
+    setRows(new_activities);
   };
 
   const removeRow = (note: NoteProps) => {
@@ -38,12 +38,22 @@ const NotesPage = () => {
     setRows(notes.filter((n) => n.id !== note.id));
   };
 
-  const editRow = (note: NoteProps) => {
+  const editRow = async (note: NoteProps) => {
+    if (note.id === undefined || note === undefined) {
+      return;
+    }
+
+    const editedRow = await editNotes(note.id, note);
+
     // @ts-ignore
-    editNotes(note.id, note);
+    if (editedRow.errorMsg) {
+      // @ts-ignore
+      setMessage({ type: "error", text: answer.errorMsg });
+    }
+
     let newNotes: NoteProps[] = notes.map((r: NoteProps) => {
       if (r.id === note.id) {
-        return note;
+        return editedRow;
       }
       return r;
     });
