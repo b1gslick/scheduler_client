@@ -178,7 +178,7 @@ jobs:
           GRID_URL: selenium
           BASE_URL: http://frontend
         run: cd tests/large_tests && rspec ${{ matrix.command }} --format doc
-      - name: artifacts
+      - name: artifacts-${{ matrix.command }}-${{ matrix.browser }}
         uses: actions/upload-artifact@v4
         if: always()
         with:

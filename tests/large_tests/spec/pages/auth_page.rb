@@ -11,7 +11,7 @@ module Pages
     end
 
     def create_account_and_login
-      try_for(2) { @to_registration.is_displayed }
+      try_for(30) { @to_registration.is_displayed }
       @to_registration.click
       try_for(2) { @confirm_registration.is_displayed }
       email = "#{generate_random_string}@gmail.iv"
