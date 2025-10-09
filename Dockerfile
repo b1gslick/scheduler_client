@@ -1,4 +1,4 @@
-ARG NODE_VERSION=21-alpine
+ARG NODE_VERSION=22-alpine
 ARG NGINX_CONFIG_PATH=nginx.conf
 FROM node:${NODE_VERSION} AS builder
 
