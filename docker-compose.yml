@@ -1,7 +1,7 @@
 services:
-  server:
-    container_name: server
-    hostname: localhost
+  backend:
+    container_name: backend
+    hostname: backend
     image: t1mon1106/scheduler:${TAG}
     ports:
       - "8080:8080"

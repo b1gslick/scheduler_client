@@ -11,7 +11,7 @@ export interface CustomRequestProps {
 
 export const useHttpClient = (props: useHttpClientProps) => {
   const baseUrl =
-    (process.env.BACKEND_ROUTE as string) ?? "http://localhost:5173/api/v1";
+    import.meta.env.VITE_BACKEND_ROUTE ?? "http://localhost:5173/api/v1";
 
   const prepareRequest = async (
     httpMethod: string,

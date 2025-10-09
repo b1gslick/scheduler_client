@@ -27,15 +27,25 @@ const NotesPage = () => {
     if (noteAdded.errorMsg) {
       // @ts-ignore
       setMessage({ type: "error", text: answer.errorMsg });
+      return;
     }
     const new_activities = await getAllNotes();
     setRows(new_activities);
   };
 
-  const removeRow = (note: NoteProps) => {
+  const removeRow = async (note: NoteProps) => {
+    if (note.id === undefined) {
+      return;
+    }
+    const deleteNote = await delteNote(note.id);
     // @ts-ignore
-    delteNote(note.id);
-    setRows(notes.filter((n) => n.id !== note.id));
+    if (deleteNote.errorMsg) {
+      // @ts-ignore
+      setMessage({ type: "error", text: deleteNote.errorMsg });
+      return;
+    }
+    const new_activities = await getAllNotes();
+    setRows(new_activities);
   };
 
   const editRow = async (note: NoteProps) => {
