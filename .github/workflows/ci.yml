@@ -125,10 +125,7 @@ jobs:
       selenium:
         image: selenium/standalone-${{ matrix.browser }}
         options: --shm-size=2gb
-      frontend:
-        image: t1mon1106/scheduler_client:${{ github.ref_name }}-tests
-        ports:
-          - 80:80
+
       postgres:
         image: postgres:16.2-alpine3.18
         env:
@@ -163,6 +160,11 @@ jobs:
           DATABASE_HOST: postgres
           CACHE_HOST: redis-db
           CACHE_PORT: 6379
+
+      frontend:
+        image: t1mon1106/scheduler_client:${{ github.ref_name }}-tests
+        ports:
+          - 80:80
 
     steps:
       - name: Check out the repo
