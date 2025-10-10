@@ -23,7 +23,7 @@ describe 'Basic user flow' do
   end
 
   after(:each) do |example|
-    name = "#{example.description}.png".delete(' ')
+    name = example.description.to_s.delete(' ')
     $driver.save_screenshot("./result/#{name}.png") if example.exception
 
     $driver.quit

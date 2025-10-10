@@ -18,7 +18,7 @@ describe 'Test render app with different resolution' do
   end
 
   after(:each) do |example|
-    name = "#{example.description}.png".delete(' ')
+    name = example.description.to_s.delete(' ')
     $driver.save_screenshot("./result/#{name}.png") if example.exception
     $driver.quit
   end
