@@ -73,7 +73,7 @@ module Utils
     puts "pixels changed:     #{diff.length}"
     puts "image changed (%): #{diff_percent}%"
 
-    output.save("./spec/result/diff_#{current}") if diff_percent > threshold
+    output.save("./result/diff_#{current}") if diff_percent > threshold
 
     diff_percent
   end
