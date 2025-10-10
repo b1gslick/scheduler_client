@@ -183,5 +183,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: artifacts-${{ github.job }}-${{ matrix.browser }}
+          name: artifacts-${{ github.job }}-${{ matrix.browser }}-${{ github.run_number }}
           path: tests/large_tests/result

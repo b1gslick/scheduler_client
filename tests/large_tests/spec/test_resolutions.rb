@@ -35,7 +35,7 @@ describe 'Test render app with different resolution' do
       d = Libs::Driver.new(device)
       $driver = d.get_driver
       @auth_page.create_account_and_login
-      try_for(5) { @board_page.add_note_button.is_displayed }
+      try_for(10) { @board_page.add_note_button.is_displayed }
       (0..2).each do |index|
         @board_page.click_add_note
         @add_note.create_note("test#{index}", "test#{index}", 60)

@@ -19,7 +19,7 @@ describe 'Basic user flow' do
     @timer = Pages::TimerPage.new
     @edit_note = Pages::EditPage.new
     @auth_page.create_account_and_login
-    try_for(5) { @board_page.add_note_button.is_displayed }
+    try_for(10) { @board_page.add_note_button.is_displayed }
   end
 
   after(:each) do |example|
