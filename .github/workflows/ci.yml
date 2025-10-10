@@ -175,7 +175,7 @@ jobs:
         env:
           BROWSER: ${{ matrix.browser }}
           GRID: true
-          GRID_URL: selenium
+          GRID_URL: http://selenium:4444
           BASE_URL: http://frontend
         run: cd tests/large_tests && rspec ${{ matrix.command }} --format doc
 
@@ -183,5 +183,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: artifacts-$GITHUB_RUN_ID-${{ matrix.browser }}
+          name: artifacts-${{ github.run_id }}-${{ matrix.browser }}
           path: tests/large_tests/result
