@@ -5,10 +5,6 @@ require_relative '../libs/utils'
 module Pages
   class AuthPage < Locators::AuthPage
     include Utils
-    # for provide all locators
-    def initialize
-      super
-    end
 
     def create_account_and_login
       try_for(5) { @to_registration.is_displayed }
@@ -20,7 +16,8 @@ module Pages
       @password_input.type_text(password)
       @repeat_password.type_text(password)
       @confirm_registration.click
-      try_for(30) { @to_registration.is_displayed }
+      $driver.navigate.to("#{site_url}/login")
+      try_for(5) { @to_registration.is_displayed }
       @login_input.type_text(email)
       @password_input.type_text(password)
       @login_button.click

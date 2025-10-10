@@ -81,4 +81,26 @@ module Utils
   def generate_random_string(len = 14)
     ('a'..'z').to_a.sample(len).join
   end
+
+  def grid
+    ENV['GRID'] || false
+  end
+
+  def grid_url
+    return unless ENV['GRID_URL'] && !ENV['GRID_URL'].empty?
+
+    ENV['GRID_URL'].to_s
+  end
+
+  def browser_type
+    if ENV['BROWSER'] && !ENV['BROWSER'].empty?
+      ENV['BROWSER'].downcase.to_sym
+    else
+      :chrome
+    end
+  end
+
+  def site_url(default = 'https://www.google.com/ncr')
+    ENV['BASE_URL'] || default
+  end
 end
