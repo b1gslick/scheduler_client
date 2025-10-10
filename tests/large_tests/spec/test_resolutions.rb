@@ -17,7 +17,8 @@ describe 'Test render app with different resolution' do
     @auth_page = Pages::AuthPage.new
   end
 
-  after(:each) do
+  after(:each) do |example|
+    $driver.save_screenshot("result/#{example.description}.png".delete(' ')) if example.exception
     $driver.quit
   end
 
@@ -42,9 +43,9 @@ describe 'Test render app with different resolution' do
       try_for(2) { expect(@board_page.all_note_length).to eql(3) }
       $driver.action.move_to_location(0, 0).perform
       name = device.gsub(/\s+/, '_')
-      $driver.save_screenshot("#{name}.png")
+      $driver.save_screenshot("result/#{name}.png")
       sleep 1
-      diff = compare_screenshots("./spec/screenshots/#{name}.png", "#{name}.png", threshold_percent)
+      diff = compare_screenshots("./spec/screenshots/#{name}.png", "result/#{name}.png", threshold_percent)
       expect(diff).to be < threshold_percent
     end
   end

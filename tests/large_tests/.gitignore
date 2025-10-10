@@ -3,3 +3,4 @@ diff*.png
 bin/
 .ruby-lsp
 .bundle
+result/.*png

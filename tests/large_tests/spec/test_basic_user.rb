@@ -22,7 +22,9 @@ describe 'Basic user flow' do
     try_for(5) { @board_page.add_note_button.is_displayed }
   end
 
-  after(:each) do
+  after(:each) do |example|
+    $driver.save_screenshot("result/#{example.description}.png".delete(' ')) if example.exception
+
     $driver.quit
   end
 
