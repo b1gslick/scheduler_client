@@ -1,6 +1,7 @@
 export GRID=false
-export BASE_URL=http://localhost:5173
-export BROWSER_HEADLESS=true
+# export BASE_URL=http://localhost:5173
+export BASE_URL=http://localhost
+export BROWSER_HEADLESS=false
 export BROWSER=chrome
 export GRID_URL=http://localhost:4444
 

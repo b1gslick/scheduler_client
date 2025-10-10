@@ -12,7 +12,7 @@ const Login = () => {
   const [message, setMessage] = useState({ type: "", text: "" });
   const auth = useAuth();
 
-  const loginHandle = (event: any) => {
+  const loginHandle = async (event: any) => {
     event.preventDefault();
     const name = event.target.uname.value;
     const psw = event.target.psw.value;
@@ -20,7 +20,7 @@ const Login = () => {
       setMessage({ type: "error", text: "Please complete login form" });
       return;
     }
-    auth?.auth({ email: name, password: psw });
+    await auth?.auth({ email: name, password: psw });
   };
 
   const props: InputFromProps = {
