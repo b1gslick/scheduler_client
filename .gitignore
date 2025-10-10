@@ -88,3 +88,5 @@ deployment_keys.tar
 release-artifacts-*
 .stryker-tmp
 reports/*
+
+tests/large_tests/result/*.png
