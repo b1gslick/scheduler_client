@@ -86,7 +86,7 @@ module Libs
     def grid_url
       return unless ENV['GRID_URL'] && !ENV['GRID_URL'].empty?
 
-      "http://#{ENV['GRID_URL']}:4444"
+      ENV['GRID_URL'].to_s
     end
 
     def browser_type

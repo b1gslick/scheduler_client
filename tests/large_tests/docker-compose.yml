@@ -23,12 +23,4 @@ services:
     environment:
       GRID: true
       GRID_URL: chrome
-      BASE_URL: http://frontend
-
-  frontend:
-    build:
-      context: ../../
-      target: final
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
+      BASE_URL: http://localhost

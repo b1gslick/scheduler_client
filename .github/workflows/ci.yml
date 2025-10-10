@@ -102,7 +102,7 @@ jobs:
           file: ./Dockerfile
           push: true
           build-args: |
-            BACKEND_ROUTE=http://frontend/api
+            BACKEND_ROUTE=http://frontend/api/v1
             NGINX_CONFIG_PATH=nginx-test.conf
           tags: ${{ steps.meta.outputs.tags }}-tests
           labels: ${{ steps.meta.outputs.labels }}

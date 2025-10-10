@@ -45,7 +45,11 @@ const InputForm = (props: InputFromProps) => {
         ) : (
           <></>
         )}
-        <button type="submit" className="form_submit">
+        <button
+          type="submit"
+          className="form_submit"
+          data-testid={`${props.datatestid}-button`}
+        >
           {props.buttonName}
         </button>
         {location.pathname !== "/registration" ? (

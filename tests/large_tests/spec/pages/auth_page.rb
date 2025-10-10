@@ -11,7 +11,7 @@ module Pages
     end
 
     def create_account_and_login
-      try_for(30) { @to_registration.is_displayed }
+      try_for(5) { @to_registration.is_displayed }
       @to_registration.click
       try_for(2) { @confirm_registration.is_displayed }
       email = "#{generate_random_string}@gmail.iv"
@@ -20,7 +20,7 @@ module Pages
       @password_input.type_text(password)
       @repeat_password.type_text(password)
       @confirm_registration.click
-      try_for(5) { @to_registration.is_displayed }
+      try_for(30) { @to_registration.is_displayed }
       @login_input.type_text(email)
       @password_input.type_text(password)
       @login_button.click
