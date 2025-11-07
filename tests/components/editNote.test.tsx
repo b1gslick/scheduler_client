@@ -55,7 +55,7 @@ const renderEdit = (forChange?: any) => {
   const note: NoteProps = {
     id: 0,
     title: "test",
-    description: "testshorttext",
+    content: "testshorttext",
     time: 10,
     isFinish: false,
   };

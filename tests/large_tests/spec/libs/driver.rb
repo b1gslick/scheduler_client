@@ -78,27 +78,5 @@ module Libs
 
       @client.close
     end
-
-    def grid
-      ENV['GRID'] || false
-    end
-
-    def grid_url
-      return unless ENV['GRID_URL'] && !ENV['GRID_URL'].empty?
-
-      "http://#{ENV['GRID_URL']}:4444"
-    end
-
-    def browser_type
-      if ENV['BROWSER'] && !ENV['BROWSER'].empty?
-        ENV['BROWSER'].downcase.to_sym
-      else
-        :chrome
-      end
-    end
-
-    def site_url(default = 'https://www.google.com/ncr')
-      ENV['BASE_URL'] || default
-    end
   end
 end

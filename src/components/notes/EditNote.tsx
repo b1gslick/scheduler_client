@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AppButton from "../UI/AppButton";
 import { NoteProps } from "./Note";
 import "./Note.css";
@@ -11,20 +11,16 @@ export type EditNoteProps = {
 
 const EditNote = (props: EditNoteProps) => {
   const [title, setEditTitle] = useState(props.note.title);
-  const [description, setEditDescription] = useState(props.note.description);
+  const [description, setEditDescription] = useState(props.note.content);
   const [time, setEditTime] = useState(props.note.time);
 
-  useEffect(() => {
-    return () => {};
-  }, []);
-
-  const editNote = (e: any) => {
+  const editNote = async (e: any) => {
     e.preventDefault();
     const note = {
       ...props.note,
       title: title,
-      description: description,
-      time: time,
+      content: description,
+      time: Number(time),
     };
     props.edit(note);
     props.modalState(false);

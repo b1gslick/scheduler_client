@@ -3,11 +3,6 @@ require_relative '../locators/timer_page'
 
 module Pages
   class TimerPage < Locators::TimerPage
-    # for provide all locators
-    def initialize
-      super
-    end
-
     def play
       @play_button.click
     end

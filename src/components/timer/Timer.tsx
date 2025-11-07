@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import NoteButton from "../UI/NoteButton";
 import { useTimer } from "../../hooks/timer_state";
+import { useTimerService } from "../../services/useTimerService";
 
 type timerProps = {
   note: NoteProps;
@@ -17,14 +18,7 @@ const Timer = (props: timerProps) => {
   let { time, setTimer } = useTimer();
   const [isPlay, setPlay] = useState(false);
   const [isFinish, setFinish] = useState(props.note.isFinish);
-
-  const editNote = () => {
-    const note = {
-      ...props.note,
-      time: Math.max(Math.floor((time % 3600) / 60), 0),
-    };
-    props.note.edit(note);
-  };
+  const { start, stop } = useTimerService();
 
   const changeTime = () => {
     time--;
@@ -83,7 +77,7 @@ const Timer = (props: timerProps) => {
             id="timer-button-pause"
             icon={faPauseCircle}
             onClick={() => {
-              editNote();
+              stop(props.note.id || -1);
               setPlay(false);
             }}
           />
@@ -94,6 +88,7 @@ const Timer = (props: timerProps) => {
             id="timer-button-play"
             icon={faPlayCircle}
             onClick={() => {
+              start(props.note.id || -1);
               setPlay(true);
             }}
           />
@@ -105,7 +100,7 @@ const Timer = (props: timerProps) => {
           aria-label="finish"
           icon={faCheckCircle}
           onClick={() => {
-            editNote();
+            stop(props.note.id || -1);
             setFinish(true);
             setPlay(false);
           }}

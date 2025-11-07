@@ -1,22 +1,27 @@
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Layout from "./layout";
-import { AuthContext, TimerProvider } from "./context";
-import { useState } from "react";
+import { TimerProvider } from "./context";
 import AppRoutes from "./routes/router";
+import { AuthProvider } from "./hooks/auth";
+import React from "react";
+import { CookiesProvider } from "react-cookie";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
   return (
-    <AuthContext.Provider value={{ isAuth, setIsAuth } as any}>
-      <TimerProvider>
+    <React.StrictMode>
+      <CookiesProvider>
         <BrowserRouter>
-          <Layout>
-            <AppRoutes />
-          </Layout>
+          <AuthProvider>
+            <TimerProvider>
+              <Layout>
+                <AppRoutes />
+              </Layout>
+            </TimerProvider>
+          </AuthProvider>
         </BrowserRouter>
-      </TimerProvider>
-    </AuthContext.Provider>
+      </CookiesProvider>
+    </React.StrictMode>
   );
 };
 

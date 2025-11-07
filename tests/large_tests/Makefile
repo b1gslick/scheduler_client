@@ -1,7 +1,7 @@
-export BASE_URL=http://localhost:5173
-# export BASE_URL=http://localhost:80
-export BROWSER_HEADLESS=true
 export GRID=false
+# export BASE_URL=http://localhost:5173
+export BASE_URL=http://localhost
+export BROWSER_HEADLESS=false
 export BROWSER=chrome
 export GRID_URL=http://localhost:4444
 
@@ -13,6 +13,9 @@ r:
 
 one:
 	rspec spec/test_basic_user.rb -e $(text)
+
+all:
+	rspec spec/*
 
 # for example
 # make one text='edit'

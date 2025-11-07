@@ -10,7 +10,7 @@ test.each([1, 10, 100])(
         {
           id: 0,
           title: "test",
-          description: "testshorttext",
+          content: "testshorttext",
           time: 10,
           isFinish: false,
         },
@@ -22,7 +22,7 @@ test.each([1, 10, 100])(
     const note = {
       id: 0,
       title: "test",
-      description: "testshorttext",
+      content: "testshorttext",
       time: 10,
       isFinish: false,
     };

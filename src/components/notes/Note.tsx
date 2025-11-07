@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NoteButton from "../UI/NoteButton";
 import "./NoteStyles.css";
 import {
@@ -13,11 +13,11 @@ import { convertMinsToHrsMins } from "../../utils/helper";
 import { useTimer } from "../../hooks/timer_state";
 
 export type NoteProps = {
-  id: number;
+  id?: number;
   title: string;
-  description: string;
-  isFinish: boolean;
-  time: any;
+  content: string;
+  isFinish?: boolean;
+  time: number;
   remove?: any;
   edit?: any;
 };
@@ -26,10 +26,6 @@ const Note = (props: NoteProps) => {
   const { setTimer } = useTimer();
   const [editModal, setEditModal] = useState(false);
   const [playModal, setTimerModal] = useState(false);
-
-  useEffect(() => {
-    return () => {};
-  }, []);
 
   return (
     <div>
@@ -65,18 +61,20 @@ const Note = (props: NoteProps) => {
             data-testid="note-desc"
             suppressContentEditableWarning={true}
           >
-            {props.description}
+            {props.content}
           </p>
         </form>
         <form className="time form_notes">
-          <p data-testid="note-timebox">{convertMinsToHrsMins(props.time)}</p>
+          <p data-testid="note-timebox">
+            {convertMinsToHrsMins(props.time / 60)}
+          </p>
         </form>
         <div className="button_container">
           <NoteButton
             aria-label="play button"
             icon={faPlayCircle}
             onClick={() => {
-              setTimer(props.time * 60);
+              setTimer(props.time);
               setTimerModal(true);
             }}
             data-testid="note-play-button"

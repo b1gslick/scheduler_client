@@ -3,6 +3,7 @@ require_relative './pages/board_page'
 require_relative './pages/add_note_page'
 require_relative './pages/timer_page'
 require_relative './pages/edit_page'
+require_relative './pages/auth_page'
 require_relative './libs/driver'
 require_relative './libs/utils'
 
@@ -13,19 +14,25 @@ describe 'Basic user flow' do
     d = Libs::Driver.new
     $driver = d.get_driver
     @board_page = Pages::BoardPage.new
+    @auth_page = Pages::AuthPage.new
     @add_note = Pages::AddNotePage.new
     @timer = Pages::TimerPage.new
     @edit_note = Pages::EditPage.new
+    @auth_page.create_account_and_login
+    try_for(10) { @board_page.add_note_button.is_displayed }
   end
 
-  after(:each) do
+  after(:each) do |example|
+    name = example.description.to_s.delete(' ')
+    $driver.save_screenshot("./result/#{name}.png") if example.exception
+
     $driver.quit
   end
 
   it 'User can add several note, play and stop timer, then delete note' do
     notes_count = 5
     add_note(notes_count, 60)
-    expect(@board_page.all_note_length).to eql(notes_count)
+    try_for(2) { expect(@board_page.all_note_length).to eql(notes_count) }
     @board_page.press_note_timer(0)
     @timer.play
     try_for(2) { expect(@timer.get_seconds).to eql('59') }
@@ -37,12 +44,12 @@ describe 'Basic user flow' do
     @timer.close
     notes_before = @board_page.all_note_length
     @board_page.delete_note(0)
-    expect(@board_page.all_note_length).to eql(notes_before - 1)
+    try_for(2) { expect(@board_page.all_note_length).to eql(notes_before - 1) }
   end
 
   it 'User can add several note, play until time end, then note mark as finish' do
-    add_note(1, 0.025)
-    expect(@board_page.all_note_length).to eql(1)
+    add_note(1, 0)
+    try_for(2) { expect(@board_page.all_note_length).to eql(1) }
     @board_page.press_note_timer(0)
     @timer.play
     try_for(2) { expect(@timer.get_seconds).to eql('00') }
@@ -54,7 +61,7 @@ describe 'Basic user flow' do
 
   it 'User can add new note, play timer and mark it as finish, timer should stop' do
     add_note(1, 5)
-    expect(@board_page.all_note_length).to eql(1)
+    try_for(2) { expect(@board_page.all_note_length).to eql(1) }
     @board_page.press_note_timer(0)
     @timer.play
     try_for(2) { expect(@timer.get_seconds).to eql('59') }
@@ -70,7 +77,7 @@ describe 'Basic user flow' do
 
   it 'User add note check timer, then edit note, compare timer is changed' do
     add_note(1, 5)
-    expect(@board_page.all_note_length).to eql(1)
+    try_for(2) { expect(@board_page.all_note_length).to eql(1) }
     @board_page.press_note_timer(0)
     @timer.play
     minutes_before = @timer.get_minutes

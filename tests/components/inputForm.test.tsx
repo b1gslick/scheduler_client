@@ -43,7 +43,12 @@ describe("Test input form", () => {
       callback: jest.fn(),
     };
     const { getByTestId } = render(
-      <MemoryRouter initialEntries={[{ pathname: "/registration" }]}>
+      <MemoryRouter
+        initialEntries={[{ pathname: "/registration" }]}
+        future={{
+          v7_startTransition: true,
+        }}
+      >
         <InputForm {...inputProps}></InputForm>
       </MemoryRouter>,
     );
@@ -65,10 +70,14 @@ const renderLoginForm = (forChange?: any) => {
   };
   return render(
     <TimerProvider>
-      <MemoryRouter initialEntries={[{ pathname: "/" }]}>
+      <MemoryRouter
+        initialEntries={[{ pathname: "/" }]}
+        future={{
+          v7_startTransition: true,
+        }}
+      >
         <InputForm {...inputProps}></InputForm>
       </MemoryRouter>
-      ,
     </TimerProvider>,
   );
 };

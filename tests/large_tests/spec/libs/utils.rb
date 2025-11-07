@@ -65,14 +65,42 @@ module Utils
         next
       end
     end
+    return 0.0 if diff.empty?
+
     diff_percent = (diff.inject { |sum, value| sum + value } / one.pixels.length) * 100
 
     puts "pixels (total):     #{two.pixels.length}"
     puts "pixels changed:     #{diff.length}"
     puts "image changed (%): #{diff_percent}%"
 
-    output.save("./spec/screenshots/diff_#{current}") if diff_percent > threshold
+    output.save("./result/diff_#{current}") if diff_percent > threshold
 
     diff_percent
+  end
+
+  def generate_random_string(len = 14)
+    ('a'..'z').to_a.sample(len).join
+  end
+
+  def grid
+    ENV['GRID'] || false
+  end
+
+  def grid_url
+    return unless ENV['GRID_URL'] && !ENV['GRID_URL'].empty?
+
+    ENV['GRID_URL'].to_s
+  end
+
+  def browser_type
+    if ENV['BROWSER'] && !ENV['BROWSER'].empty?
+      ENV['BROWSER'].downcase.to_sym
+    else
+      :chrome
+    end
+  end
+
+  def site_url(default = 'https://www.google.com/ncr')
+    ENV['BASE_URL'] || default
   end
 end
