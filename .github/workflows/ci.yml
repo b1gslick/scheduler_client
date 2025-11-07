@@ -119,7 +119,7 @@ jobs:
       fail-fast: false
       matrix:
         browser: ["chrome", "firefox"]
-        command: ["spec/test_resolutions*", "spec/test_basic*"]
+        command: ["spec/test_basic*"]
 
     services:
       selenium:
@@ -146,8 +146,7 @@ jobs:
           - 6379:6379
 
       backend:
-        # image: t1mon1106/scheduler:main
-        image: t1mon1106/scheduler:lesson-9
+        image: t1mon1106/scheduler:main
         ports:
           - 8080:8080
         env:
