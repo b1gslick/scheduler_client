@@ -146,7 +146,8 @@ jobs:
           - 6379:6379
 
       backend:
-        image: t1mon1106/scheduler:main
+        # image: t1mon1106/scheduler:main
+        image: t1mon1106/scheduler:lesson-9
         ports:
           - 8080:8080
         env:
